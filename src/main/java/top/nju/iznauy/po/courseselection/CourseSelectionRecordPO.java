@@ -21,7 +21,7 @@ public class CourseSelectionRecordPO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int key;
+    private int id;
 
     @ManyToOne(targetEntity = CourseReleasePO.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "courseReleaseId")
@@ -30,7 +30,7 @@ public class CourseSelectionRecordPO {
     @Column(nullable = false)
     private String studentEmail;
 
-    @Column(columnDefinition = "bit(1) default false", nullable = true)
+    @Column(columnDefinition = "bit(1) default false")
     private boolean isSelect;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -47,13 +47,14 @@ public class CourseSelectionRecordPO {
         this.operateTime = operateTime;
     }
 
-    public int getKey() {
-        return key;
+    public int getId() {
+        return id;
     }
 
-    public void setKey(int key) {
-        this.key = key;
+    public void setId(int id) {
+        this.id = id;
     }
+
 
     public CourseReleasePO getCourseRelease() {
         return courseRelease;
