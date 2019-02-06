@@ -6,6 +6,7 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
+import top.nju.iznauy.controller.tools.AdminUsername;
 import top.nju.iznauy.controller.tools.JwtTokenUtils;
 import top.nju.iznauy.controller.tools.UserEmail;
 
@@ -15,11 +16,12 @@ import top.nju.iznauy.controller.tools.UserEmail;
  *
  * @author iznauy
  */
-public class UserEmailArgumentResolver implements HandlerMethodArgumentResolver {
+public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
-        return methodParameter.getParameter().isAnnotationPresent(UserEmail.class);
+        return methodParameter.getParameter().isAnnotationPresent(UserEmail.class)
+                || methodParameter.getParameter().isAnnotationPresent(AdminUsername.class);
     }
 
     @Nullable

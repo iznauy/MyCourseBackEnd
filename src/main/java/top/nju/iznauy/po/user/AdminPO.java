@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table
 @Data
-public class AdministratorPO {
+public class AdminPO {
 
     @Id
     private String userName;
