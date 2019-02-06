@@ -1,4 +1,4 @@
-package top.nju.iznauy.dao.daoImpl;
+package top.nju.iznauy.dao.daoImpl.user;
 
 import org.springframework.stereotype.Repository;
 import top.nju.iznauy.dao.StudentDao;
