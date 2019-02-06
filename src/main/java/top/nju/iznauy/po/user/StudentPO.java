@@ -48,11 +48,11 @@ public class StudentPO {
      */
     public StudentPO(String mail, String password) {
         this.mail = mail;
-        this.userName = mail.split("@")[0]; // 用户名前面的部分自动作为学号
+        this.userName = mail.split("@")[0]; // 邮箱前面的部分自动作为学号和用户名
         this.password = password;
 
         this.avatar = AvatarRandomGenerator.randomGenerateStudentAvatar();
-        this.number = null;
+        this.number = userName;
         this.hasValidated = false;
         this.hasCancelled = false;
     }

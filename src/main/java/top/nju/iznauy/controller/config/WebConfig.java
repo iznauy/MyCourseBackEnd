@@ -34,7 +34,7 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public UsernameArgumentResolver usernameArgumentResolver() {
-        return new UsernameArgumentResolver();
+    public UserEmailArgumentResolver usernameArgumentResolver() {
+        return new UserEmailArgumentResolver();
     }
 }

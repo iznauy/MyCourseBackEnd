@@ -7,7 +7,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import top.nju.iznauy.controller.tools.JwtTokenUtils;
-import top.nju.iznauy.controller.tools.Username;
+import top.nju.iznauy.controller.tools.UserEmail;
 
 /**
  * Created on 06/02/2019.
@@ -15,11 +15,11 @@ import top.nju.iznauy.controller.tools.Username;
  *
  * @author iznauy
  */
-public class UsernameArgumentResolver implements HandlerMethodArgumentResolver {
+public class UserEmailArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
-        return methodParameter.getParameter().isAnnotationPresent(Username.class);
+        return methodParameter.getParameter().isAnnotationPresent(UserEmail.class);
     }
 
     @Nullable
