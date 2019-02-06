@@ -1,5 +1,6 @@
 package top.nju.iznauy.dao.daoImpl.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import top.nju.iznauy.dao.TeacherDao;
 import top.nju.iznauy.po.user.TeacherPO;
@@ -14,23 +15,37 @@ import top.nju.iznauy.po.uservalidation.TeacherMailValidationPO;
 @Repository
 public class TeacherDaoImpl implements TeacherDao {
 
+    private TeacherRepository teacherRepository;
+
+    private TeacherEmailValidationRepository emailValidationRepository;
+
     @Override
     public TeacherPO getTeacherByEmail(String email) {
-        return null;
+        return teacherRepository.findById(email).orElse(null);
     }
 
     @Override
     public void saveTeacher(TeacherPO teacherPO) {
-
+        teacherRepository.save(teacherPO);
     }
 
     @Override
     public void saveCode(TeacherMailValidationPO mailValidationPO) {
-
+        emailValidationRepository.save(mailValidationPO);
     }
 
     @Override
     public TeacherMailValidationPO getTeacherMailValidationPO(String email) {
-        return null;
+        return emailValidationRepository.findById(email).orElse(null);
+    }
+
+    @Autowired
+    public void setTeacherRepository(TeacherRepository teacherRepository) {
+        this.teacherRepository = teacherRepository;
+    }
+
+    @Autowired
+    public void setEmailValidationRepository(TeacherEmailValidationRepository emailValidationRepository) {
+        this.emailValidationRepository = emailValidationRepository;
     }
 }
