@@ -16,6 +16,7 @@ import java.util.Date;
 @Table
 @Entity
 @Data
+@NoArgsConstructor
 public class CourseAssignmentCommitPO {
 
     @Id
@@ -28,7 +29,7 @@ public class CourseAssignmentCommitPO {
     @Column(nullable = false)
     private String path;
 
-    @Column(columnDefinition = "bit(1) default false", nullable = false)
+    @Column(nullable = false)
     private boolean scored;
 
     @Column

@@ -1,6 +1,7 @@
 package top.nju.iznauy.po.user;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import top.nju.iznauy.tools.AvatarRandomGenerator;
 
 import javax.persistence.Column;
@@ -17,6 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table
 @Data
+@NoArgsConstructor
 public class TeacherPO {
 
     @Id
@@ -31,7 +33,7 @@ public class TeacherPO {
     @Column(nullable = false)
     private String avatar;
 
-    @Column(columnDefinition = "bit(1) default false", nullable = false)
+    @Column(nullable = false)
     private boolean hasValidated;
 
     public TeacherPO(String mail, String password) {

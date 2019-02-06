@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.nju.iznauy.controller.tools.JwtTokenUtils;
 import top.nju.iznauy.dao.StudentDao;
-import top.nju.iznauy.exception.IncorrectAccountException;
-import top.nju.iznauy.exception.IncorrectCodeException;
-import top.nju.iznauy.exception.NotActivationException;
-import top.nju.iznauy.exception.ServerUnknownException;
+import top.nju.iznauy.exception.*;
 import top.nju.iznauy.po.user.StudentPO;
 import top.nju.iznauy.po.uservalidation.StudentMailValidationPO;
 import top.nju.iznauy.service.UserService;
@@ -47,12 +44,18 @@ public class StudentServiceImpl implements UserService {
 
     @Override
     public void register(String email, String password) {
+        StudentPO rawStudent = studentDao.getStudentByEmail(email);
+        if (rawStudent != null)
+            throw new EmailDuplicateException("已注册");
         StudentPO studentPO = new StudentPO(email, password);
         studentDao.saveStudent(studentPO);
     }
 
     @Override
     public void sendValidationCode(String email) {
+        StudentPO rawStudent = studentDao.getStudentByEmail(email);
+        if (rawStudent != null)
+            throw new IncorrectAccountException("账号不存在");
         String code = CodeRandomGenerator.randomGenerateCode();
         studentDao.saveCode(new StudentMailValidationPO(email, code));
         mailService.sentMail(email, code);

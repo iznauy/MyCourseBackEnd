@@ -1,6 +1,7 @@
 package top.nju.iznauy.po.courseware;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -17,6 +18,7 @@ import java.util.Date;
 @Entity
 @EntityListeners(value = AuditingEntityListener.class)
 @Data
+@NoArgsConstructor
 public class CourseWarePO {
 
     @Id
@@ -32,7 +34,7 @@ public class CourseWarePO {
     @Column(nullable = false)
     private String path;
 
-    @Column(columnDefinition = "bit(1) default false", nullable = false)
+    @Column(nullable = false)
     private boolean deleted = false;
 
     @Temporal(TemporalType.TIMESTAMP)

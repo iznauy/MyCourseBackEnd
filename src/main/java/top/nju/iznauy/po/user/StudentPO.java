@@ -1,6 +1,7 @@
 package top.nju.iznauy.po.user;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import top.nju.iznauy.tools.AvatarRandomGenerator;
 
 import javax.persistence.Column;
@@ -17,6 +18,7 @@ import javax.persistence.Table;
 @Table
 @Entity
 @Data
+@NoArgsConstructor
 public class StudentPO {
 
     @Id
@@ -34,10 +36,10 @@ public class StudentPO {
     @Column
     private String number; // 学号，可以为空
 
-    @Column(columnDefinition = "bit(1) default false", nullable = false)
+    @Column(nullable = false)
     private boolean hasValidated;
 
-    @Column(columnDefinition = "bit(1) default false", nullable = false)
+    @Column(nullable = false)
     private boolean hasCancelled;
 
     /**

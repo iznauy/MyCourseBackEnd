@@ -1,6 +1,7 @@
 package top.nju.iznauy.po.courseselection;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import top.nju.iznauy.po.course.CourseReleasePO;
@@ -19,6 +20,7 @@ import java.util.Date;
 @Table
 @EntityListeners(value = AuditingEntityListener.class)
 @Data
+@NoArgsConstructor
 public class CourseSelectionRecordPO {
 
     @Id
@@ -32,7 +34,7 @@ public class CourseSelectionRecordPO {
     @Column(nullable = false)
     private String studentEmail;
 
-    @Column(columnDefinition = "bit(1) default false")
+    @Column(nullable = false)
     private boolean isSelect;
 
     @Temporal(TemporalType.TIMESTAMP)

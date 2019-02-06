@@ -16,6 +16,7 @@ import java.util.Date;
 @Table
 @Entity
 @Data
+@NoArgsConstructor
 public class CourseAssignmentPO {
 
     @Id

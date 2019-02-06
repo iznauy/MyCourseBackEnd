@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.nju.iznauy.controller.tools.JwtTokenUtils;
 import top.nju.iznauy.dao.TeacherDao;
-import top.nju.iznauy.exception.IncorrectAccountException;
-import top.nju.iznauy.exception.IncorrectCodeException;
-import top.nju.iznauy.exception.NotActivationException;
-import top.nju.iznauy.exception.ServerUnknownException;
+import top.nju.iznauy.exception.*;
 import top.nju.iznauy.po.user.TeacherPO;
 import top.nju.iznauy.po.uservalidation.TeacherMailValidationPO;
 import top.nju.iznauy.service.UserService;
@@ -44,12 +41,18 @@ public class TeacherServiceImpl implements UserService {
 
     @Override
     public void register(String email, String password) {
+        TeacherPO rawTeacher = teacherDao.getTeacherByEmail(email);
+        if (rawTeacher != null)
+            throw new EmailDuplicateException("已注册");
         TeacherPO teacherPO = new TeacherPO(email, password);
         teacherDao.saveTeacher(teacherPO);
     }
 
     @Override
     public void sendValidationCode(String email) {
+        TeacherPO rawTeacher = teacherDao.getTeacherByEmail(email);
+        if (rawTeacher != null)
+            throw new IncorrectAccountException("账号不存在");
         String code = CodeRandomGenerator.randomGenerateCode();
         teacherDao.saveCode(new TeacherMailValidationPO(email, code));
         mailService.sentMail(email, code);

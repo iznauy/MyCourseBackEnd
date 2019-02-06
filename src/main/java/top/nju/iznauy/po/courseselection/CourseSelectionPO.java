@@ -15,6 +15,7 @@ import javax.persistence.*;
 @Table
 @Entity
 @Data
+@NoArgsConstructor
 public class CourseSelectionPO {
 
     @Id

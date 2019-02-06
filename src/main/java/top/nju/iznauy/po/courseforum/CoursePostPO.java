@@ -19,6 +19,7 @@ import java.util.Date;
 @Entity
 @EntityListeners(value = AuditingEntityListener.class)
 @Data
+@NoArgsConstructor
 public class CoursePostPO {
 
     @Id

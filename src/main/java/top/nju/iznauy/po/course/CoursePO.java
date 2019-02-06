@@ -15,6 +15,7 @@ import javax.persistence.*;
 @Table
 @Entity
 @Data
+@NoArgsConstructor
 public class CoursePO {
 
     @Id
@@ -31,10 +32,10 @@ public class CoursePO {
     @Column(nullable = false)
     private String courseCreatorMail; // 创建课程的老师的邮箱
 
-    @Column(columnDefinition = "bit(1) default false", nullable = false)
+    @Column(nullable = false)
     private boolean hasChecked;
 
-    @Column(columnDefinition = "bit(1) default false", nullable = false)
+    @Column(nullable = false)
     private boolean hasApproved;
 
     public CoursePO(String courseName, String courseDescription, String courseCreatorMail) {
