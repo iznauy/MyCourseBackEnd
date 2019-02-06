@@ -8,6 +8,7 @@ import top.nju.iznauy.dao.StudentDao;
 import top.nju.iznauy.exception.IncorrectAccountException;
 import top.nju.iznauy.po.user.StudentPO;
 import top.nju.iznauy.service.StudentInfoService;
+import top.nju.iznauy.service.tool.FileOperations;
 import top.nju.iznauy.vo.AvatarVO;
 import top.nju.iznauy.vo.StudentBasicInfoVO;
 
@@ -23,6 +24,7 @@ public class StudentInfoServiceImpl implements StudentInfoService {
 
     private StudentDao studentDao;
 
+    // 防御式编程
     private void checkStudent(StudentPO studentPO) {
         if (studentPO == null)
             throw new IncorrectAccountException("账号不存在");
@@ -31,7 +33,6 @@ public class StudentInfoServiceImpl implements StudentInfoService {
     @Override
     public void logOff(String email) {
         StudentPO studentPO = studentDao.getStudentByEmail(email);
-        // 防御式编程
         checkStudent(studentPO);
 
         studentPO.setHasCancelled(true);
@@ -65,7 +66,13 @@ public class StudentInfoServiceImpl implements StudentInfoService {
 
     @Override
     public void uploadAvatar(String email, MultipartFile avatar) {
-        // todo: 头像上传
+        StudentPO studentPO = studentDao.getStudentByEmail(email);
+        checkStudent(studentPO);
+
+        String newAvatarPath = FileOperations.saveAvatar(avatar, email);
+        studentPO.setAvatar(newAvatarPath);
+
+        studentDao.saveStudent(studentPO);
     }
 
     @Autowired
