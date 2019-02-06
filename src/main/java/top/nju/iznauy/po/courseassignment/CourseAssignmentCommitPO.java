@@ -1,5 +1,9 @@
 package top.nju.iznauy.po.courseassignment;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -11,6 +15,7 @@ import java.util.Date;
  */
 @Table
 @Entity
+@Data
 public class CourseAssignmentCommitPO {
 
     @Id
@@ -33,63 +38,11 @@ public class CourseAssignmentCommitPO {
     @Column(nullable = false)
     private Date upLoadTime;
 
-
-    public CourseAssignmentCommitPO() {
-    }
-
     public CourseAssignmentCommitPO(int assignmentId, String path, boolean scored, Integer score, Date upLoadTime) {
         this.assignmentId = assignmentId;
         this.path = path;
         this.scored = scored;
         this.score = score;
-        this.upLoadTime = upLoadTime;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getAssignmentId() {
-        return assignmentId;
-    }
-
-    public void setAssignmentId(int assignmentId) {
-        this.assignmentId = assignmentId;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public boolean isScored() {
-        return scored;
-    }
-
-    public void setScored(boolean scored) {
-        this.scored = scored;
-    }
-
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
-
-    public Date getUpLoadTime() {
-        return upLoadTime;
-    }
-
-    public void setUpLoadTime(Date upLoadTime) {
         this.upLoadTime = upLoadTime;
     }
 }

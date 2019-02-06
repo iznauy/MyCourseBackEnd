@@ -1,5 +1,9 @@
 package top.nju.iznauy.po.courseselection;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 /**
@@ -10,6 +14,7 @@ import javax.persistence.*;
  */
 @Table
 @Entity
+@Data
 public class CourseSelectionPO {
 
     @Id
@@ -28,54 +33,11 @@ public class CourseSelectionPO {
     @Column
     private Integer score;
 
-    public CourseSelectionPO() {
-    }
-
     public CourseSelectionPO(int courseId, int courseReleaseId,
                              String studentMail, Integer score) {
         this.courseId = courseId;
         this.courseReleaseId = courseReleaseId;
         this.studentMail = studentMail;
-        this.score = score;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
-    }
-
-    public int getCourseReleaseId() {
-        return courseReleaseId;
-    }
-
-    public void setCourseReleaseId(int courseReleaseId) {
-        this.courseReleaseId = courseReleaseId;
-    }
-
-    public String getStudentMail() {
-        return studentMail;
-    }
-
-    public void setStudentMail(String studentMail) {
-        this.studentMail = studentMail;
-    }
-
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
         this.score = score;
     }
 }

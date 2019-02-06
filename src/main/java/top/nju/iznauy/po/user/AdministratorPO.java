@@ -1,5 +1,7 @@
 package top.nju.iznauy.po.user;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,6 +15,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table
+@Data
 public class AdministratorPO {
 
     @Id
@@ -21,22 +24,4 @@ public class AdministratorPO {
     @Column(nullable = false)
     private String password;
 
-    public AdministratorPO() {
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

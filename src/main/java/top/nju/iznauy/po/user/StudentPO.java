@@ -1,5 +1,6 @@
 package top.nju.iznauy.po.user;
 
+import lombok.Data;
 import top.nju.iznauy.tools.AvatarRandomGenerator;
 
 import javax.persistence.Column;
@@ -15,6 +16,7 @@ import javax.persistence.Table;
  */
 @Table
 @Entity
+@Data
 public class StudentPO {
 
     @Id
@@ -38,9 +40,6 @@ public class StudentPO {
     @Column(columnDefinition = "bit(1) default false", nullable = false)
     private boolean hasCancelled;
 
-    public StudentPO() {
-    }
-
     /**
      * 主要是提供给注册的时候
      * @param mail
@@ -55,72 +54,5 @@ public class StudentPO {
         this.number = userName;
         this.hasValidated = false;
         this.hasCancelled = false;
-    }
-
-    public StudentPO(String mail, String userName, String password, String avatar,
-                     String number, boolean hasValidated, boolean hasCancelled) {
-        this.mail = mail;
-        this.userName = userName;
-        this.password = password;
-        this.avatar = avatar;
-        this.number = number;
-        this.hasValidated = hasValidated;
-        this.hasCancelled = hasCancelled;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public boolean isHasValidated() {
-        return hasValidated;
-    }
-
-    public void setHasValidated(boolean hasValidated) {
-        this.hasValidated = hasValidated;
-    }
-
-    public boolean isHasCancelled() {
-        return hasCancelled;
-    }
-
-    public void setHasCancelled(boolean hasCancelled) {
-        this.hasCancelled = hasCancelled;
     }
 }

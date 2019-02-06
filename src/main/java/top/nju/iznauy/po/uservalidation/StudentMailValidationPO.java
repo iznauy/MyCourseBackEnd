@@ -1,5 +1,9 @@
 package top.nju.iznauy.po.uservalidation;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,6 +17,9 @@ import javax.persistence.Table;
  */
 @Table
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class StudentMailValidationPO {
 
     @Id
@@ -21,27 +28,4 @@ public class StudentMailValidationPO {
     @Column(length = 7, nullable = false)
     private String code; // 用户6位数字验证码
 
-    public StudentMailValidationPO() {
-    }
-
-    public StudentMailValidationPO(String mail, String code) {
-        this.mail = mail;
-        this.code = code;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
 }

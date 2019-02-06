@@ -1,5 +1,8 @@
 package top.nju.iznauy.po.courseforum;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -15,6 +18,7 @@ import java.util.Date;
 @Table
 @Entity
 @EntityListeners(value = AuditingEntityListener.class)
+@Data
 public class CoursePostPO {
 
     @Id
@@ -42,9 +46,6 @@ public class CoursePostPO {
     @CreatedDate
     private Date createTime;
 
-    public CoursePostPO() {
-    }
-
     public CoursePostPO(int courseId, String title, String context,
                         String creatorEmail, Identity creatorIdentity) {
         this.courseId = courseId;
@@ -52,61 +53,5 @@ public class CoursePostPO {
         this.context = context;
         this.creatorEmail = creatorEmail;
         this.creatorIdentity = creatorIdentity;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContext() {
-        return context;
-    }
-
-    public void setContext(String context) {
-        this.context = context;
-    }
-
-    public String getCreatorEmail() {
-        return creatorEmail;
-    }
-
-    public void setCreatorEmail(String creatorEmail) {
-        this.creatorEmail = creatorEmail;
-    }
-
-    public Identity getCreatorIdentity() {
-        return creatorIdentity;
-    }
-
-    public void setCreatorIdentity(Identity creatorIdentity) {
-        this.creatorIdentity = creatorIdentity;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 }

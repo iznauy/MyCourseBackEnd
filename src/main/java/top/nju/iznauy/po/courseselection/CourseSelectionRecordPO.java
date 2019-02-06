@@ -1,5 +1,6 @@
 package top.nju.iznauy.po.courseselection;
 
+import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import top.nju.iznauy.po.course.CourseReleasePO;
@@ -17,6 +18,7 @@ import java.util.Date;
 @Entity
 @Table
 @EntityListeners(value = AuditingEntityListener.class)
+@Data
 public class CourseSelectionRecordPO {
 
     @Id
@@ -37,54 +39,10 @@ public class CourseSelectionRecordPO {
     @CreatedDate
     private Date operateTime;
 
-    public CourseSelectionRecordPO() {
-    }
-
     public CourseSelectionRecordPO(CourseReleasePO courseRelease, String studentEmail, boolean isSelect, Date operateTime) {
         this.courseRelease = courseRelease;
         this.studentEmail = studentEmail;
         this.isSelect = isSelect;
-        this.operateTime = operateTime;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-
-    public CourseReleasePO getCourseRelease() {
-        return courseRelease;
-    }
-
-    public void setCourseRelease(CourseReleasePO courseRelease) {
-        this.courseRelease = courseRelease;
-    }
-
-    public String getStudentEmail() {
-        return studentEmail;
-    }
-
-    public void setStudentEmail(String studentEmail) {
-        this.studentEmail = studentEmail;
-    }
-
-    public boolean isSelect() {
-        return isSelect;
-    }
-
-    public void setSelect(boolean select) {
-        isSelect = select;
-    }
-
-    public Date getOperateTime() {
-        return operateTime;
-    }
-
-    public void setOperateTime(Date operateTime) {
         this.operateTime = operateTime;
     }
 }

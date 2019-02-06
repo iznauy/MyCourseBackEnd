@@ -1,5 +1,9 @@
 package top.nju.iznauy.po.courseassignment;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -11,6 +15,7 @@ import java.util.Date;
  */
 @Table
 @Entity
+@Data
 public class CourseAssignmentPO {
 
     @Id
@@ -30,53 +35,10 @@ public class CourseAssignmentPO {
     @Column(nullable = false)
     private Date deadLine;
 
-    public CourseAssignmentPO() {
-    }
-
     public CourseAssignmentPO(int courseReleaseId, String name, String description, Date deadLine) {
         this.courseReleaseId = courseReleaseId;
         this.name = name;
         this.description = description;
-        this.deadLine = deadLine;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getCourseReleaseId() {
-        return courseReleaseId;
-    }
-
-    public void setCourseReleaseId(int courseReleaseId) {
-        this.courseReleaseId = courseReleaseId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getDeadLine() {
-        return deadLine;
-    }
-
-    public void setDeadLine(Date deadLine) {
         this.deadLine = deadLine;
     }
 }
