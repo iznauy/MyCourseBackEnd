@@ -39,13 +39,16 @@ public class UserController {
         return getBeanByUserType(userType).login(email, password);
     }
 
+
     @GetMapping("/register")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PassToken
     public void register(@RequestParam String email, @RequestParam String password, @RequestParam UserType userType) {
         log.info("邮箱：" + email + " 注册成为 " + userType);
         getBeanByUserType(userType).register(email, password);
     }
 
+    @PassToken
     @GetMapping("/validation")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void validate(@RequestParam String email, @RequestParam UserType userType) {
@@ -53,6 +56,7 @@ public class UserController {
         getBeanByUserType(userType).sendValidationCode(email);
     }
 
+    @PassToken
     @PostMapping("/validation")
     @ResponseStatus(HttpStatus.OK)
     public TokenVO validate(@RequestParam String email, @RequestParam String code, @RequestParam UserType userType) {

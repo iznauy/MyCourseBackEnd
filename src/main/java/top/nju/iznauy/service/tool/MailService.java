@@ -1,5 +1,6 @@
 package top.nju.iznauy.service.tool;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
  *
  * @author iznauy
  */
+@Slf4j
 @Service
 public class MailService {
 
@@ -27,6 +29,11 @@ public class MailService {
         message.setText(content);
 
         sender.send(message);
+
+        log.info("Send email from " + from + ", to " + to);
+        log.info("Title: " + title);
+        log.info("Content: " + content);
+
     }
 
     public void sentMail(String to, String code) {

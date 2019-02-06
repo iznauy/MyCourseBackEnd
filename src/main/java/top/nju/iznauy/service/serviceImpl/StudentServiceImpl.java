@@ -69,8 +69,9 @@ public class StudentServiceImpl implements UserService {
         if (code.equals(mailValidationPO.getCode())) {
             // 验证是对的了
             StudentPO studentPO = studentDao.getStudentByEmail(email);
-            // 设置用户验证状态并存储
+            // 设置用户验证状态、激活状态并存储
             studentPO.setHasValidated(true);
+            studentPO.setHasCancelled(false);
             studentDao.saveStudent(studentPO);
         } else
             throw new IncorrectCodeException("验证码有误");
