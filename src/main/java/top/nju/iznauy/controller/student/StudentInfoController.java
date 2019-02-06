@@ -68,10 +68,10 @@ public class StudentInfoController {
     }
 
     /**
-     * 上传头像 还是不是很会写
+     * 上传头像
      */
     @UserToken
-    @PutMapping("/avatar")
+    @PostMapping("/avatar")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void uploadAvatar(@UserEmail String email, MultipartFile avatar) {
         studentInfoService.uploadAvatar(email, avatar);
