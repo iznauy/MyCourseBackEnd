@@ -22,6 +22,6 @@ public interface TeacherDao {
 
     TeacherMailValidationPO getTeacherMailValidationPO(String email);
 
-    List<TeacherPO> getTeachersByEmailCollection(Collection<TeacherPO> collection);
+    List<TeacherPO> getTeachersByEmailCollection(Collection<String> collection);
 
 }

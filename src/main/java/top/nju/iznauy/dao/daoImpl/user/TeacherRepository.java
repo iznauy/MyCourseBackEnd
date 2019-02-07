@@ -14,6 +14,6 @@ import java.util.List;
  */
 public interface TeacherRepository extends CrudRepository<TeacherPO, String> {
 
-    List<TeacherPO> findAllByMailIn(Collection<TeacherPO> teacherPOS);
+    List<TeacherPO> findAllByMailIn(Collection<String> teacherPOS);
 
 }

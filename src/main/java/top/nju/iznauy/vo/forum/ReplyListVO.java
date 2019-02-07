@@ -2,7 +2,6 @@ package top.nju.iznauy.vo.forum;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import top.nju.iznauy.entity.UserType;
 
 import java.util.Date;
@@ -14,7 +13,6 @@ import java.util.List;
  *
  * @author iznauy
  */
-@NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class ReplyListVO {
@@ -25,7 +23,6 @@ public class ReplyListVO {
 
 
     @AllArgsConstructor
-    @NoArgsConstructor
     @Data
     public static class ReplyListItemVO {
 

@@ -2,7 +2,6 @@ package top.nju.iznauy.vo.forum;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import top.nju.iznauy.entity.UserType;
 
 import java.util.Date;
@@ -15,7 +14,6 @@ import java.util.List;
  * @author iznauy
  */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class PostListVO {
 
@@ -25,7 +23,6 @@ public class PostListVO {
 
     @Data
     @AllArgsConstructor
-    @NoArgsConstructor
     public static class PostListItemVO {
 
         private int id;
@@ -43,6 +40,7 @@ public class PostListVO {
         private int replyCount;
 
         private Date changeTime;
+
     }
 
 }

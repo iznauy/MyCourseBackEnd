@@ -22,6 +22,6 @@ public interface StudentDao {
 
     StudentMailValidationPO getStudentMailValidationByEmail(String email);
 
-    List<StudentPO> getStudentsByEmailCollection(Collection<StudentPO> collection);
+    List<StudentPO> getStudentsByEmailCollection(Collection<String> collection);
 
 }

@@ -43,7 +43,7 @@ public class TeacherDaoImpl implements TeacherDao {
     }
 
     @Override
-    public List<TeacherPO> getTeachersByEmailCollection(Collection<TeacherPO> collection) {
+    public List<TeacherPO> getTeachersByEmailCollection(Collection<String> collection) {
         return teacherRepository.findAllByMailIn(collection);
     }
 

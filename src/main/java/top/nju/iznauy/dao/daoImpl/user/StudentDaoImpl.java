@@ -44,7 +44,7 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public List<StudentPO> getStudentsByEmailCollection(Collection<StudentPO> collection) {
+    public List<StudentPO> getStudentsByEmailCollection(Collection<String> collection) {
         return studentRepository.findAllByMailIn(collection);
     }
 
