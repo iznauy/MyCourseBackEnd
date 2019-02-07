@@ -6,6 +6,9 @@ import top.nju.iznauy.dao.StudentDao;
 import top.nju.iznauy.po.user.StudentPO;
 import top.nju.iznauy.po.uservalidation.StudentMailValidationPO;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
  * Created on 06/02/2019.
  * Description:
@@ -40,6 +43,11 @@ public class StudentDaoImpl implements StudentDao {
         return emailValidationRepository.findById(email).orElse(null);
     }
 
+    @Override
+    public List<StudentPO> getStudentsByEmailCollection(Collection<StudentPO> collection) {
+        return studentRepository.findAllByMailIn(collection);
+    }
+
     @Autowired
     public void setStudentRepository(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
@@ -49,4 +57,6 @@ public class StudentDaoImpl implements StudentDao {
     public void setEmailValidationRepository(StudentEmailValidationRepository emailValidationRepository) {
         this.emailValidationRepository = emailValidationRepository;
     }
+
+
 }

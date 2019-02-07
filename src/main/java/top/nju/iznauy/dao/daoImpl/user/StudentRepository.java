@@ -3,6 +3,9 @@ package top.nju.iznauy.dao.daoImpl.user;
 import org.springframework.data.repository.CrudRepository;
 import top.nju.iznauy.po.user.StudentPO;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
  * Created on 06/02/2019.
  * Description:
@@ -10,5 +13,7 @@ import top.nju.iznauy.po.user.StudentPO;
  * @author iznauy
  */
 public interface StudentRepository extends CrudRepository<StudentPO, String> {
+
+    List<StudentPO> findAllByMailIn(Collection<StudentPO> studentPOS);
 
 }

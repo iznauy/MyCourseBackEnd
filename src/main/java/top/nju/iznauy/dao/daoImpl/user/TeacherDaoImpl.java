@@ -6,6 +6,9 @@ import top.nju.iznauy.dao.TeacherDao;
 import top.nju.iznauy.po.user.TeacherPO;
 import top.nju.iznauy.po.uservalidation.TeacherMailValidationPO;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
  * Created on 06/02/2019.
  * Description:
@@ -39,6 +42,11 @@ public class TeacherDaoImpl implements TeacherDao {
         return emailValidationRepository.findById(email).orElse(null);
     }
 
+    @Override
+    public List<TeacherPO> getTeachersByEmailCollection(Collection<TeacherPO> collection) {
+        return teacherRepository.findAllByMailIn(collection);
+    }
+
     @Autowired
     public void setTeacherRepository(TeacherRepository teacherRepository) {
         this.teacherRepository = teacherRepository;
@@ -48,4 +56,5 @@ public class TeacherDaoImpl implements TeacherDao {
     public void setEmailValidationRepository(TeacherEmailValidationRepository emailValidationRepository) {
         this.emailValidationRepository = emailValidationRepository;
     }
+
 }
