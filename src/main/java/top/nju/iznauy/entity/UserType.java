@@ -1,4 +1,4 @@
-package top.nju.iznauy.controller;
+package top.nju.iznauy.entity;
 
 /**
  * Created on 07/02/2019.

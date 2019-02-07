@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import top.nju.iznauy.entity.UserType;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -34,7 +35,7 @@ public class CourseReplyPO {
 
     @Enumerated(value = EnumType.ORDINAL)
     @Column(nullable = false)
-    private Identity creatorIdentity;
+    private UserType creatorIdentity;
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
@@ -56,7 +57,7 @@ public class CourseReplyPO {
 //        this.replyTo = replyTo;
 //    }
 
-    public CourseReplyPO(String context, String creatorEmail, Identity creatorIdentity, Date createTime, int replyTo) {
+    public CourseReplyPO(String context, String creatorEmail, UserType creatorIdentity, Date createTime, int replyTo) {
         this.context = context;
         this.creatorEmail = creatorEmail;
         this.creatorIdentity = creatorIdentity;

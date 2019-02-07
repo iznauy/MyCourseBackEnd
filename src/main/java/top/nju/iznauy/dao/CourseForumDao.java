@@ -24,4 +24,6 @@ public interface CourseForumDao {
 
     void saveReply(CourseReplyPO replyPO);
 
+    CoursePostPO getCoursePostById(int id);
+
 }

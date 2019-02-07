@@ -28,10 +28,10 @@ public class CourseForumDaoImpl implements CourseForumDao {
 
     private CourseReplyRepository replyRepository;
 
-    // 帖子的排序是按照时间倒序来的
+    // 帖子的排序是按照最后更新时间来排序的
     @Override
     public Pair<List<CoursePostPO>, Integer> getCoursePosts(int courseId, int page, int pageSize) {
-        PageRequest pageRequest = PageRequest.of(page, pageSize, Sort.by(Sort.Direction.DESC, "createTime"));
+        PageRequest pageRequest = PageRequest.of(page, pageSize, Sort.by(Sort.Direction.DESC, "changeTime"));
         Page<CoursePostPO> resultPage = postRepository.findAll((e0, e1, e2) -> {
             e1.where(e2.equal(e0.<Integer>get("courseId"), courseId));
             return null;
@@ -64,6 +64,11 @@ public class CourseForumDaoImpl implements CourseForumDao {
         postPO.addReply();
         postRepository.save(postPO);
         replyRepository.save(replyPO);
+    }
+
+    @Override
+    public CoursePostPO getCoursePostById(int id) {
+        return postRepository.findById(id).orElse(null);
     }
 
     @Autowired

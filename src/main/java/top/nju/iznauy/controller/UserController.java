@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import top.nju.iznauy.controller.tools.PassToken;
+import top.nju.iznauy.entity.UserType;
 import top.nju.iznauy.exception.ServerUnknownException;
 import top.nju.iznauy.service.UserService;
 import top.nju.iznauy.vo.TokenVO;

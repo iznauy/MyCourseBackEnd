@@ -3,7 +3,9 @@ package top.nju.iznauy.po.courseforum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import top.nju.iznauy.entity.UserType;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -40,17 +42,21 @@ public class CoursePostPO {
 
     @Enumerated(value = EnumType.ORDINAL)
     @Column(nullable = false)
-    private Identity creatorIdentity;
+    private UserType creatorIdentity;
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date createTime;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
+    private Date changeTime;
+
     @Column(nullable = false)
     private int replyCount;
 
     public CoursePostPO(int courseId, String title, String context,
-                        String creatorEmail, Identity creatorIdentity) {
+                        String creatorEmail, UserType creatorIdentity) {
         this.courseId = courseId;
         this.title = title;
         this.context = context;
