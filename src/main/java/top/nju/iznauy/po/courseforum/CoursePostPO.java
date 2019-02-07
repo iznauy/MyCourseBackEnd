@@ -35,7 +35,7 @@ public class CoursePostPO {
 
     @Lob
     @Column(nullable = false, columnDefinition = "text")
-    private String context;
+    private String content;
 
     @Column(nullable = false)
     private String creatorEmail; // 可能是老师，也可能是学生
@@ -55,11 +55,11 @@ public class CoursePostPO {
     @Column(nullable = false)
     private int replyCount;
 
-    public CoursePostPO(int courseId, String title, String context,
+    public CoursePostPO(int courseId, String title, String content,
                         String creatorEmail, UserType creatorIdentity) {
         this.courseId = courseId;
         this.title = title;
-        this.context = context;
+        this.content = content;
         this.creatorEmail = creatorEmail;
         this.creatorIdentity = creatorIdentity;
         this.replyCount = 0;

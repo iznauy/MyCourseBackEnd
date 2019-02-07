@@ -28,7 +28,7 @@ public class CourseReplyPO {
 
     @Lob
     @Column(nullable = false, columnDefinition = "text")
-    private String context;
+    private String content;
 
     @Column(nullable = false)
     private String creatorEmail; // 可能是老师，也可能是学生
@@ -57,11 +57,10 @@ public class CourseReplyPO {
 //        this.replyTo = replyTo;
 //    }
 
-    public CourseReplyPO(String context, String creatorEmail, UserType creatorIdentity, Date createTime, int replyTo) {
-        this.context = context;
+    public CourseReplyPO(String content, String creatorEmail, UserType creatorIdentity, int replyTo) {
+        this.content = content;
         this.creatorEmail = creatorEmail;
         this.creatorIdentity = creatorIdentity;
-        this.createTime = createTime;
         this.replyTo = replyTo;
     }
 }
