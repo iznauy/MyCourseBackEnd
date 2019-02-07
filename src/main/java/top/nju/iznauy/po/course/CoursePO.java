@@ -1,6 +1,5 @@
 package top.nju.iznauy.po.course;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,7 +25,7 @@ public class CoursePO {
     private String courseName;
 
     @Lob
-    @Column(nullable = false, columnDefinition="text")
+    @Column(nullable = false, columnDefinition = "text")
     private String courseDescription;
 
     @Column(nullable = false)

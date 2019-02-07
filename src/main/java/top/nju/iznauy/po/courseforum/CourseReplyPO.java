@@ -1,6 +1,5 @@
 package top.nju.iznauy.po.courseforum;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -27,7 +26,7 @@ public class CourseReplyPO {
     private int id;
 
     @Lob
-    @Column(nullable = false, columnDefinition="text")
+    @Column(nullable = false, columnDefinition = "text")
     private String context;
 
     @Column(nullable = false)

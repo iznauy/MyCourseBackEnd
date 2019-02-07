@@ -44,6 +44,7 @@ public class StudentPO {
 
     /**
      * 主要是提供给注册的时候
+     *
      * @param mail
      * @param password
      */

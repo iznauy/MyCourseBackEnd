@@ -26,10 +26,6 @@ public class UserController {
     @Resource(name = "teacherService")
     private UserService teacherService;
 
-    enum UserType {
-        student,
-        teacher
-    }
 
     @GetMapping("/login")
     @ResponseStatus(HttpStatus.OK)
@@ -60,7 +56,7 @@ public class UserController {
     @PostMapping("/validation")
     @ResponseStatus(HttpStatus.OK)
     public TokenVO validate(@RequestParam String email, @RequestParam String code, @RequestParam UserType userType) {
-       return getBeanByUserType(userType).validateUser(email, code);
+        return getBeanByUserType(userType).validateUser(email, code);
     }
 
     private UserService getBeanByUserType(UserType userType) {

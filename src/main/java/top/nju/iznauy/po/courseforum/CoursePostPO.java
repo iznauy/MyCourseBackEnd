@@ -1,6 +1,5 @@
 package top.nju.iznauy.po.courseforum;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -33,7 +32,7 @@ public class CoursePostPO {
     private String title;
 
     @Lob
-    @Column(nullable = false, columnDefinition="text")
+    @Column(nullable = false, columnDefinition = "text")
     private String context;
 
     @Column(nullable = false)
@@ -47,6 +46,9 @@ public class CoursePostPO {
     @CreatedDate
     private Date createTime;
 
+    @Column(nullable = false)
+    private int replyCount;
+
     public CoursePostPO(int courseId, String title, String context,
                         String creatorEmail, Identity creatorIdentity) {
         this.courseId = courseId;
@@ -54,5 +56,11 @@ public class CoursePostPO {
         this.context = context;
         this.creatorEmail = creatorEmail;
         this.creatorIdentity = creatorIdentity;
+        this.replyCount = 0;
     }
+
+    public void addReply() {
+        this.replyCount += 1;
+    }
+
 }

@@ -1,7 +1,6 @@
 package top.nju.iznauy.dao.daoImpl.user;
 
 import org.springframework.data.repository.CrudRepository;
-import top.nju.iznauy.po.user.TeacherPO;
 import top.nju.iznauy.po.uservalidation.TeacherMailValidationPO;
 
 /**

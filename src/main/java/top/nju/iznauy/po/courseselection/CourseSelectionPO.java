@@ -1,6 +1,5 @@
 package top.nju.iznauy.po.courseselection;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
