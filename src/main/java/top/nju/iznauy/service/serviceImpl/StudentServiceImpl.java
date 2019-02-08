@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.nju.iznauy.controller.tools.JwtTokenUtils;
 import top.nju.iznauy.dao.StudentDao;
+import top.nju.iznauy.entity.UserType;
 import top.nju.iznauy.exception.*;
 import top.nju.iznauy.po.user.StudentPO;
 import top.nju.iznauy.po.uservalidation.StudentMailValidationPO;
@@ -38,7 +39,7 @@ public class StudentServiceImpl implements UserService {
         if (studentPO.isHasCancelled()) // 取消了激活
             throw new NotActivationException();
 
-        String token = JwtTokenUtils.createToken(email);
+        String token = JwtTokenUtils.createToken(email, UserType.student);
         return new TokenVO(token);
     }
 
@@ -75,7 +76,7 @@ public class StudentServiceImpl implements UserService {
             studentDao.saveStudent(studentPO);
         } else
             throw new IncorrectCodeException("验证码有误");
-        String token = JwtTokenUtils.createToken(email);
+        String token = JwtTokenUtils.createToken(email, UserType.student);
         return new TokenVO(token);
     }
 

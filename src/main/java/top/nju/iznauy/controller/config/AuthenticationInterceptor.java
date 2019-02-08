@@ -3,11 +3,10 @@ package top.nju.iznauy.controller.config;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
-import top.nju.iznauy.controller.tools.AdminToken;
-import top.nju.iznauy.controller.tools.JwtTokenUtils;
-import top.nju.iznauy.controller.tools.PassToken;
-import top.nju.iznauy.controller.tools.UserToken;
+import top.nju.iznauy.controller.tools.*;
+import top.nju.iznauy.entity.UserType;
 import top.nju.iznauy.exception.NotLoginException;
+import top.nju.iznauy.exception.PermissionDeniedException;
 import top.nju.iznauy.exception.TokenExpiredException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +30,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         if (method.isAnnotationPresent(PassToken.class))
             return true;
         String token = request.getHeader("token");
-        if (method.isAnnotationPresent(UserToken.class) || method.isAnnotationPresent(AdminToken.class)) {
+        if (method.isAnnotationPresent(StudentToken.class) || method.isAnnotationPresent(TeacherToken.class)
+                || method.isAnnotationPresent(AdminToken.class) || method.isAnnotationPresent(UserToken.class)) {
             if (token == null) {
                 throw new NotLoginException("未登录");
             }
@@ -47,6 +47,20 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             }
             if (unknownError)
                 throw new NotLoginException("未知错误");
+            UserType userType = JwtTokenUtils.getUserType(token);
+            if (method.isAnnotationPresent(UserToken.class)) {
+                if (userType != UserType.student && userType != UserType.teacher)
+                    throw new PermissionDeniedException("该链接仅支持学生和老师访问");
+            } else if (method.isAnnotationPresent(StudentToken.class)) {
+                if (userType != UserType.student)
+                    throw new PermissionDeniedException("该链接仅支持学生访问");
+            } else if (method.isAnnotationPresent(TeacherToken.class)) {
+                if (userType != UserType.teacher)
+                    throw new PermissionDeniedException("该链接仅支持老师访问");
+            } else {
+                if (userType != UserType.admin)
+                    throw new PermissionDeniedException("该链接仅支持管理员访问");
+            }
             return true;
         }
         return true;

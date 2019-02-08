@@ -9,6 +9,7 @@ package top.nju.iznauy.entity;
 public enum UserType {
 
     student,
-    teacher
+    teacher,
+    admin
 
 }

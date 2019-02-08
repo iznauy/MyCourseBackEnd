@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import top.nju.iznauy.controller.tools.Type;
 import top.nju.iznauy.controller.tools.UserEmail;
 import top.nju.iznauy.controller.tools.UserToken;
 import top.nju.iznauy.entity.UserType;
@@ -28,7 +29,7 @@ public class CourseForumController {
     @UserToken
     @PostMapping("/post")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void publishPost(@UserEmail String email, @RequestParam UserType userType,
+    public void publishPost(@UserEmail String email, @Type UserType userType,
                             @RequestParam int courseId, @RequestParam String title,
                             @RequestParam String content) {
         courseForumService.publishPost(email, userType, courseId, title, content);
@@ -37,7 +38,7 @@ public class CourseForumController {
     @UserToken
     @PostMapping("/reply")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void publishReply(@UserEmail String email, @RequestParam UserType userType,
+    public void publishReply(@UserEmail String email, @Type UserType userType,
                              @RequestParam int postId, @RequestParam String content) {
         courseForumService.publishReply(email, userType, postId, content);
     }

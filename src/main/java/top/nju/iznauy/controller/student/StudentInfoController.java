@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import top.nju.iznauy.controller.tools.PassToken;
+import top.nju.iznauy.controller.tools.StudentToken;
 import top.nju.iznauy.controller.tools.UserEmail;
 import top.nju.iznauy.controller.tools.UserToken;
 import top.nju.iznauy.service.StudentInfoService;
@@ -28,20 +29,20 @@ public class StudentInfoController {
     /**
      * 账号取消激活（注销，其实只是改变了状态位，让他登不上去而已）
      */
-    @UserToken
+    @StudentToken
     @GetMapping("/logoff")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void logOff(@UserEmail String email) {
         studentInfoService.logOff(email);
     }
 
-    @UserToken
+    @StudentToken
     @GetMapping("/info")
     public StudentBasicInfoVO getStudentBasicInfo(@UserEmail String email) {
         return studentInfoService.getBasicInfo(email);
     }
 
-    @UserToken
+    @StudentToken
     @PostMapping("/info")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void modifyStudentBasicInfo(@UserEmail String email, String username, String number) {
@@ -60,7 +61,7 @@ public class StudentInfoController {
     /**
      * 获取自身头像，可以不用传email，但是需要传token，这个方法其实可有可无
      */
-    @UserToken
+    @StudentToken
     @GetMapping("/ownAvatar")
     public AvatarVO getOwnAvatar(@UserEmail String email) {
         return studentInfoService.getAvatar(email);
@@ -69,7 +70,7 @@ public class StudentInfoController {
     /**
      * 上传头像
      */
-    @UserToken
+    @StudentToken
     @PostMapping("/avatar")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void uploadAvatar(@UserEmail String email, MultipartFile avatar) {

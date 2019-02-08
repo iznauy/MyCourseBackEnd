@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.nju.iznauy.controller.tools.JwtTokenUtils;
 import top.nju.iznauy.dao.AdminDao;
+import top.nju.iznauy.entity.UserType;
 import top.nju.iznauy.exception.IncorrectAccountException;
 import top.nju.iznauy.po.user.AdminPO;
 import top.nju.iznauy.service.AdminService;
@@ -30,7 +31,7 @@ public class AdminServiceImpl implements AdminService {
         if (!adminPO.getPassword().equals(password))
             throw new IncorrectAccountException("密码错误");
 
-        String token = JwtTokenUtils.createToken(username);
+        String token = JwtTokenUtils.createToken(username, UserType.admin);
         return new TokenVO(token);
     }
 

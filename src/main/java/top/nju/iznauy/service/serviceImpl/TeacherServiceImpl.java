@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.nju.iznauy.controller.tools.JwtTokenUtils;
 import top.nju.iznauy.dao.TeacherDao;
+import top.nju.iznauy.entity.UserType;
 import top.nju.iznauy.exception.*;
 import top.nju.iznauy.po.user.TeacherPO;
 import top.nju.iznauy.po.uservalidation.TeacherMailValidationPO;
@@ -35,7 +36,7 @@ public class TeacherServiceImpl implements UserService {
         if (!teacherPO.isHasValidated()) // 没有激活过
             throw new NotActivationException();
 
-        String token = JwtTokenUtils.createToken(email);
+        String token = JwtTokenUtils.createToken(email, UserType.teacher);
         return new TokenVO(token);
     }
 
@@ -69,7 +70,7 @@ public class TeacherServiceImpl implements UserService {
             teacherDao.saveTeacher(teacherPO);
         } else
             throw new IncorrectCodeException("验证码有误");
-        String token = JwtTokenUtils.createToken(email);
+        String token = JwtTokenUtils.createToken(email, UserType.teacher);
         return new TokenVO(token);
     }
 

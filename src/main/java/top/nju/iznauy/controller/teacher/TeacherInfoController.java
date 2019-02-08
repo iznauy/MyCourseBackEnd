@@ -3,6 +3,7 @@ package top.nju.iznauy.controller.teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import top.nju.iznauy.controller.tools.TeacherToken;
 import top.nju.iznauy.controller.tools.UserEmail;
 import top.nju.iznauy.controller.tools.UserToken;
 import top.nju.iznauy.service.TeacherInfoService;
@@ -22,12 +23,12 @@ public class TeacherInfoController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/info")
-    @UserToken
+    @TeacherToken
     public TeacherBasicInfoVO getTeacherBasicInfo(@UserEmail String email) {
         return teacherInfoService.getBasicInfo(email);
     }
 
-    @UserToken
+    @TeacherToken
     @PostMapping("/info")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void modifyTeacherBasicInfo(@UserEmail String email, String username) {
