@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created on 04/02/2019.
@@ -27,11 +28,13 @@ public class CourseReleasePO {
     @JoinColumn(name = "courseId")
     private CoursePO course;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private int year;
+    private Date beginDate;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private int term;
+    private Date endDate;
 
     @Column(nullable = false)
     private int classOrder;
@@ -39,13 +42,13 @@ public class CourseReleasePO {
     @Column(nullable = false)
     private boolean hasQuota;
 
-    @Column(nullable = false, columnDefinition = "int default 0")
+    @Column(nullable = false)
     private int quota;
 
-    @Column(columnDefinition = "bit(1) default false", nullable = false)
+    @Column(nullable = false)
     private boolean hasChecked;
 
-    @Column(columnDefinition = "bit(1) default false", nullable = false)
+    @Column(nullable = false)
     private boolean hasApproved;
 
 }

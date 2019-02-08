@@ -2,8 +2,12 @@ package top.nju.iznauy.po.course;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created on 04/02/2019.
@@ -15,6 +19,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class CoursePO {
 
     @Id
@@ -36,6 +41,14 @@ public class CoursePO {
 
     @Column(nullable = false)
     private boolean hasApproved;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date createDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
+    private Date checkDate;
 
     public CoursePO(String courseName, String courseDescription, String courseCreatorMail) {
         this.courseName = courseName;
