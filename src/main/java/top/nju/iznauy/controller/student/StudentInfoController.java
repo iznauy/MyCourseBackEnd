@@ -8,7 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 import top.nju.iznauy.controller.tools.PassToken;
 import top.nju.iznauy.controller.tools.StudentToken;
 import top.nju.iznauy.controller.tools.UserEmail;
-import top.nju.iznauy.controller.tools.UserToken;
 import top.nju.iznauy.service.StudentInfoService;
 import top.nju.iznauy.vo.AvatarVO;
 import top.nju.iznauy.vo.StudentBasicInfoVO;

@@ -1,5 +1,6 @@
 package top.nju.iznauy.service.serviceImpl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.nju.iznauy.controller.tools.JwtTokenUtils;
@@ -20,6 +21,7 @@ import top.nju.iznauy.vo.TokenVO;
  *
  * @author iznauy
  */
+@Slf4j
 @Service("studentService")
 public class StudentServiceImpl implements UserService {
 
@@ -55,7 +57,7 @@ public class StudentServiceImpl implements UserService {
     @Override
     public void sendValidationCode(String email) {
         StudentPO rawStudent = studentDao.getStudentByEmail(email);
-        if (rawStudent != null)
+        if (rawStudent == null)
             throw new IncorrectAccountException("账号不存在");
         String code = CodeRandomGenerator.randomGenerateCode();
         studentDao.saveCode(new StudentMailValidationPO(email, code));
