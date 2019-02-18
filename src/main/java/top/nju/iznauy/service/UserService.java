@@ -1,5 +1,6 @@
 package top.nju.iznauy.service;
 
+import top.nju.iznauy.vo.AvatarVO;
 import top.nju.iznauy.vo.TokenVO;
 
 /**
@@ -17,5 +18,7 @@ public interface UserService {
     void sendValidationCode(String email);
 
     TokenVO validateUser(String email, String code);
+
+    AvatarVO getAvatar(String email);
 
 }

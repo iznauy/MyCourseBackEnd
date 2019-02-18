@@ -4,9 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import top.nju.iznauy.controller.tools.PassToken;
+import top.nju.iznauy.controller.tools.Type;
+import top.nju.iznauy.controller.tools.UserEmail;
+import top.nju.iznauy.controller.tools.UserToken;
 import top.nju.iznauy.entity.UserType;
 import top.nju.iznauy.exception.ServerUnknownException;
 import top.nju.iznauy.service.UserService;
+import top.nju.iznauy.vo.AvatarVO;
 import top.nju.iznauy.vo.TokenVO;
 
 import javax.annotation.Resource;
@@ -58,6 +62,20 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public TokenVO validate(@RequestParam String email, @RequestParam String code, @RequestParam UserType userType) {
         return getBeanByUserType(userType).validateUser(email, code);
+    }
+
+    @UserToken
+    @GetMapping("/ownAvatar")
+    @ResponseStatus(HttpStatus.OK)
+    public AvatarVO getOwnAvatar(@UserEmail String email, @Type UserType userType) {
+        return getBeanByUserType(userType).getAvatar(email);
+    }
+
+    @PassToken
+    @GetMapping("/avatar")
+    @ResponseStatus(HttpStatus.OK)
+    public AvatarVO getAvatar(String email, UserType userType) {
+        return getBeanByUserType(userType).getAvatar(email);
     }
 
     private UserService getBeanByUserType(UserType userType) {

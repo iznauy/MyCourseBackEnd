@@ -11,6 +11,7 @@ import top.nju.iznauy.po.uservalidation.TeacherMailValidationPO;
 import top.nju.iznauy.service.UserService;
 import top.nju.iznauy.service.tool.MailService;
 import top.nju.iznauy.tools.CodeRandomGenerator;
+import top.nju.iznauy.vo.AvatarVO;
 import top.nju.iznauy.vo.TokenVO;
 
 /**
@@ -72,6 +73,12 @@ public class TeacherServiceImpl implements UserService {
             throw new IncorrectCodeException("验证码有误");
         String token = JwtTokenUtils.createToken(email, UserType.teacher);
         return new TokenVO(token);
+    }
+
+    @Override
+    public AvatarVO getAvatar(String email) {
+        TeacherPO teacherPO = teacherDao.getTeacherByEmail(email);
+        return new AvatarVO(teacherPO.getAvatar());
     }
 
     @Autowired
