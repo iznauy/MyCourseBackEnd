@@ -7,7 +7,7 @@ import top.nju.iznauy.dao.TeacherDao;
 import top.nju.iznauy.exception.IncorrectAccountException;
 import top.nju.iznauy.po.user.TeacherPO;
 import top.nju.iznauy.service.TeacherInfoService;
-import top.nju.iznauy.vo.TeacherBasicInfoVO;
+import top.nju.iznauy.vo.teacher.TeacherBasicInfoVO;
 
 /**
  * Created on 07/02/2019.

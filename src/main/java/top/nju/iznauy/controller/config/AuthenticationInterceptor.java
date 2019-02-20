@@ -37,6 +37,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             }
             boolean unknownError = false;
             try {
+                System.out.println(token);
                 JwtTokenUtils.isExpiration(token);
             } catch (ExpiredJwtException e) {
                 e.printStackTrace();

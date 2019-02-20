@@ -53,7 +53,7 @@ public class TeacherServiceImpl implements UserService {
     @Override
     public void sendValidationCode(String email) {
         TeacherPO rawTeacher = teacherDao.getTeacherByEmail(email);
-        if (rawTeacher != null)
+        if (rawTeacher == null)
             throw new IncorrectAccountException("账号不存在");
         String code = CodeRandomGenerator.randomGenerateCode();
         teacherDao.saveCode(new TeacherMailValidationPO(email, code));

@@ -5,9 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import top.nju.iznauy.controller.tools.TeacherToken;
 import top.nju.iznauy.controller.tools.UserEmail;
-import top.nju.iznauy.controller.tools.UserToken;
 import top.nju.iznauy.service.TeacherInfoService;
-import top.nju.iznauy.vo.TeacherBasicInfoVO;
+import top.nju.iznauy.vo.teacher.TeacherBasicInfoVO;
 
 /**
  * Created on 06/02/2019.

@@ -11,4 +11,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ResponseStatus(HttpStatus.PRECONDITION_FAILED)
 public class NotActivationException extends RuntimeException {
+
+    public NotActivationException() {
+        super("账号尚未激活");
+    }
 }

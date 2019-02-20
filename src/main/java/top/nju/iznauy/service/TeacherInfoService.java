@@ -1,6 +1,6 @@
 package top.nju.iznauy.service;
 
-import top.nju.iznauy.vo.TeacherBasicInfoVO;
+import top.nju.iznauy.vo.teacher.TeacherBasicInfoVO;
 
 /**
  * Created on 07/02/2019.

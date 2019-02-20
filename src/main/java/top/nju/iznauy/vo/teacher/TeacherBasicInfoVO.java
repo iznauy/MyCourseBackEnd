@@ -1,4 +1,4 @@
-package top.nju.iznauy.vo;
+package top.nju.iznauy.vo.teacher;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
