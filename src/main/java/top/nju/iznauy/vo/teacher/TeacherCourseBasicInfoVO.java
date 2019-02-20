@@ -3,6 +3,7 @@ package top.nju.iznauy.vo.teacher;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import top.nju.iznauy.po.course.CoursePO;
 
 import java.util.Date;
 
@@ -15,7 +16,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeacherCourseVO {
+public class TeacherCourseBasicInfoVO {
 
     private int id;
 
@@ -28,5 +29,14 @@ public class TeacherCourseVO {
     private boolean check;
 
     private Date createDate;
+
+    public TeacherCourseBasicInfoVO(CoursePO po) {
+        id = po.getCourseId();
+        name = po.getCourseName();
+        description = po.getCourseDescription();
+        approve = po.isHasApproved();
+        check = po.isHasChecked();
+        createDate = po.getCreateDate();
+    }
 
 }

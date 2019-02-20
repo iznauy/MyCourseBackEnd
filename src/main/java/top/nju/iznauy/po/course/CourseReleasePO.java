@@ -51,4 +51,18 @@ public class CourseReleasePO {
     @Column(nullable = false)
     private boolean hasApproved;
 
+    public CourseReleasePO(CoursePO course, Date beginDate, Date endDate, int classOrder, boolean hasQuota, int quota) {
+        this.course = course;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+        this.classOrder = classOrder;
+        this.hasQuota = hasQuota;
+        if (hasQuota)
+            this.quota = quota;
+        else
+            this.quota = 0;
+
+        hasChecked = false;
+        hasApproved = false;
+    }
 }
