@@ -3,6 +3,8 @@ package top.nju.iznauy.po.course;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,6 +20,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@EntityListeners(AuditingEntityListener.class)
 public class CourseReleasePO {
 
     @Id
@@ -50,6 +53,10 @@ public class CourseReleasePO {
 
     @Column(nullable = false)
     private boolean hasApproved;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date createDate;
 
     public CourseReleasePO(CoursePO course, Date beginDate, Date endDate, int classOrder, boolean hasQuota, int quota) {
         this.course = course;

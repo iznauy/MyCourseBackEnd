@@ -12,4 +12,6 @@ public interface AdminDao {
 
     AdminPO getAdminByUsername(String username);
 
+    void addAdmin(AdminPO adminPO);
+
 }

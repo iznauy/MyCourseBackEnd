@@ -23,6 +23,11 @@ public class AdminDaoImpl implements AdminDao {
         return adminRepository.findById(username).orElse(null);
     }
 
+    @Override
+    public void addAdmin(AdminPO adminPO) {
+        adminRepository.save(adminPO);
+    }
+
     @Autowired
     public void setAdminRepository(AdminRepository adminRepository) {
         this.adminRepository = adminRepository;
