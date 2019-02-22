@@ -7,6 +7,7 @@ import top.nju.iznauy.po.course.CoursePO;
 import top.nju.iznauy.po.course.CourseReleasePO;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class CourseReleaseDaoImpl implements CourseReleaseDao {
     @Override
     public List<CourseReleasePO> getAvailableReleases() {
         Date now = new Date();
-        return courseReleaseRepository.findAllByBeginDateBeforeAndEndDateAfter(now, now);
+        return courseReleaseRepository.findAllByBeginDateBeforeAndEndDateAfterAndHasApproved(now, now, true);
     }
 
     @Override
@@ -63,6 +64,11 @@ public class CourseReleaseDaoImpl implements CourseReleaseDao {
             );
             return null;
         }).orElse(null);
+    }
+
+    @Override
+    public List<CourseReleasePO> getReleasesByIds(Collection<Integer> ids) {
+        return courseReleaseRepository.findAllByIdIn(ids);
     }
 
     @Override

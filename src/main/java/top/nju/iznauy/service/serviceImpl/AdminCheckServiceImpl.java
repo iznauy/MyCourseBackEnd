@@ -2,13 +2,14 @@ package top.nju.iznauy.service.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import top.nju.iznauy.dao.CourseDao;
 import top.nju.iznauy.dao.CourseReleaseDao;
 import top.nju.iznauy.exception.NotExistsException;
 import top.nju.iznauy.po.course.CoursePO;
 import top.nju.iznauy.po.course.CourseReleasePO;
 import top.nju.iznauy.service.AdminCheckService;
-import top.nju.iznauy.service.CourseSelectionService;
+import top.nju.iznauy.service.CourseAllocateService;
 import top.nju.iznauy.vo.admin.AdminUncheckedCourseReleaseVO;
 import top.nju.iznauy.vo.admin.AdminUncheckedCourseVO;
 
@@ -28,7 +29,7 @@ public class AdminCheckServiceImpl implements AdminCheckService {
 
     private CourseReleaseDao releaseDao;
 
-    private CourseSelectionService courseSelectionService;
+    private CourseAllocateService courseAllocateService;
 
     @Override
     public List<AdminUncheckedCourseVO> getUncheckedCourses() {
@@ -62,7 +63,7 @@ public class AdminCheckServiceImpl implements AdminCheckService {
         releaseDao.saveRelease(releasePO);
 
         if (releasePO.isHasQuota()) // 自动分配课程
-            courseSelectionService.allocateCourseReleaseRandomly(id);
+            courseAllocateService.allocateCourseReleaseRandomly(id);
     }
 
     @Autowired
@@ -76,7 +77,7 @@ public class AdminCheckServiceImpl implements AdminCheckService {
     }
 
     @Autowired
-    public void setCourseSelectionService(CourseSelectionService courseSelectionService) {
-        this.courseSelectionService = courseSelectionService;
+    public void setCourseAllocateService(CourseAllocateService courseAllocateService) {
+        this.courseAllocateService = courseAllocateService;
     }
 }

@@ -22,9 +22,6 @@ public class CourseSelectionPO {
     private int id;
 
     @Column(nullable = false)
-    private int courseId;
-
-    @Column(nullable = false)
     private int courseReleaseId;
 
     @Column(nullable = false)
@@ -33,9 +30,8 @@ public class CourseSelectionPO {
     @Column
     private Integer score;
 
-    public CourseSelectionPO(int courseId, int courseReleaseId,
+    public CourseSelectionPO(int courseReleaseId,
                              String studentMail) {
-        this.courseId = courseId;
         this.courseReleaseId = courseReleaseId;
         this.studentMail = studentMail;
 

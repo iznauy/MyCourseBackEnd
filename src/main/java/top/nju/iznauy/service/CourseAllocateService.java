@@ -6,7 +6,7 @@ package top.nju.iznauy.service;
  *
  * @author iznauy
  */
-public interface CourseSelectionService {
+public interface CourseAllocateService {
 
     void allocateCourseReleaseRandomly(int releaseId);
 

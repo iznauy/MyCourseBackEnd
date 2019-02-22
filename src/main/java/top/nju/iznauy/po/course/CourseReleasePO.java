@@ -49,7 +49,11 @@ public class CourseReleasePO {
     private int quota;
 
     @Column(nullable = false)
+    private int count;
+
+    @Column(nullable = false)
     private boolean hasChecked;
+
 
     @Column(nullable = false)
     private boolean hasApproved;
@@ -71,5 +75,18 @@ public class CourseReleasePO {
 
         hasChecked = false;
         hasApproved = false;
+        count = 0;
+    }
+
+    public void addCount() {
+        this.count++;
+    }
+
+    public void minusCount() {
+        this.count--;
+    }
+
+    public boolean available() {
+        return !hasQuota || count < quota;
     }
 }

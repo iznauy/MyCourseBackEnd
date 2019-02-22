@@ -2,6 +2,8 @@ package top.nju.iznauy.dao;
 
 import top.nju.iznauy.po.course.CourseReleasePO;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -21,6 +23,8 @@ public interface CourseReleaseDao {
     List<CourseReleasePO> getUncheckedRelease();
 
     List<CourseReleasePO> getAllRelease();
+
+    List<CourseReleasePO> getReleasesByIds(Collection<Integer> ids);
 
     CourseReleasePO getReleaseByCourseIdAndClassOrder(int courseId, int classOrder);
 

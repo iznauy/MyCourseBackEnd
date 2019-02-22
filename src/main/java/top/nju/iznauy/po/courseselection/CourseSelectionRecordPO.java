@@ -40,10 +40,9 @@ public class CourseSelectionRecordPO {
     @CreatedDate
     private Date operateTime;
 
-    public CourseSelectionRecordPO(CourseReleasePO courseRelease, String studentEmail, boolean isSelect, Date operateTime) {
+    public CourseSelectionRecordPO(CourseReleasePO courseRelease, String studentEmail, boolean isSelect) {
         this.courseRelease = courseRelease;
         this.studentEmail = studentEmail;
         this.isSelect = isSelect;
-        this.operateTime = operateTime;
     }
 }

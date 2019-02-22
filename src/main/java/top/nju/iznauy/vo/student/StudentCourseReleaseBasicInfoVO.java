@@ -3,6 +3,7 @@ package top.nju.iznauy.vo.student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import top.nju.iznauy.po.course.CourseReleasePO;
 
 import java.util.Date;
 
@@ -29,6 +30,13 @@ public class StudentCourseReleaseBasicInfoVO {
 
     private String name;
 
-    private String teacherName;
+    public StudentCourseReleaseBasicInfoVO(CourseReleasePO releasePO) {
+        this.id = releasePO.getId();
+        this.courseId = releasePO.getCourse().getCourseId();
+        this.begin = releasePO.getBeginDate();
+        this.end = releasePO.getEndDate();
+        this.classOrder = releasePO.getClassOrder();
+        this.name = releasePO.getCourse().getCourseName();
+    }
 
 }

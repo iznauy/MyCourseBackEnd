@@ -24,4 +24,6 @@ public interface StudentDao {
 
     List<StudentPO> getStudentsByEmailCollection(Collection<String> collection);
 
+    List<StudentPO> getStudents(int limit);
+
 }

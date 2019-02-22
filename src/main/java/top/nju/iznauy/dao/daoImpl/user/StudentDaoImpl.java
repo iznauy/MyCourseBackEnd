@@ -1,6 +1,7 @@
 package top.nju.iznauy.dao.daoImpl.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import top.nju.iznauy.dao.StudentDao;
 import top.nju.iznauy.po.user.StudentPO;
@@ -41,6 +42,12 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public StudentMailValidationPO getStudentMailValidationByEmail(String email) {
         return emailValidationRepository.findById(email).orElse(null);
+    }
+
+    @Override
+    public List<StudentPO> getStudents(int limit) {
+        PageRequest pageRequest = PageRequest.of(0, limit);
+        return studentRepository.findAll(pageRequest).getContent();
     }
 
     @Override
