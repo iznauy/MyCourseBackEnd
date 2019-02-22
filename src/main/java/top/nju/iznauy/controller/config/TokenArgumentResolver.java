@@ -10,8 +10,6 @@ import top.nju.iznauy.controller.tools.AdminUsername;
 import top.nju.iznauy.controller.tools.JwtTokenUtils;
 import top.nju.iznauy.controller.tools.Type;
 import top.nju.iznauy.controller.tools.UserEmail;
-import top.nju.iznauy.entity.UserType;
-import top.nju.iznauy.po.user.AdminPO;
 
 /**
  * Created on 06/02/2019.

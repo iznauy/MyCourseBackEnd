@@ -2,7 +2,6 @@ package top.nju.iznauy.service.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import top.nju.iznauy.dao.CourseDao;
 import top.nju.iznauy.dao.CourseReleaseDao;
 import top.nju.iznauy.exception.NotExistsException;

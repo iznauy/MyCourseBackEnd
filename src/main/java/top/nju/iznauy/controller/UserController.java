@@ -60,7 +60,7 @@ public class UserController {
     @PassToken
     @PostMapping("/validation")
     @ResponseStatus(HttpStatus.OK)
-    public TokenVO validate(@RequestParam String email,@RequestParam String code, @RequestParam UserType userType) {
+    public TokenVO validate(@RequestParam String email, @RequestParam String code, @RequestParam UserType userType) {
         return getBeanByUserType(userType).validateUser(email, code);
     }
 

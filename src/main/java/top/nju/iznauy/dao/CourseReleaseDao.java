@@ -3,7 +3,6 @@ package top.nju.iznauy.dao;
 import top.nju.iznauy.po.course.CourseReleasePO;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**

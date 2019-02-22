@@ -45,14 +45,14 @@ public class TeacherCourseController {
         return teacherCourseService.getAllReleasesByCourseId(email, courseId);
     }
 
-    @PostMapping(value= "/release")
+    @PostMapping(value = "/release")
     @TeacherToken
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void releaseCourse(@UserEmail String email, int id,
                               @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-                              Date beginDate,
+                                      Date beginDate,
                               @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-                              Date endDate, int classOrder,
+                                      Date endDate, int classOrder,
                               boolean hasQuota, int quota) {
         teacherCourseService.releaseCourse(email, id, beginDate, endDate, classOrder, hasQuota, quota);
     }

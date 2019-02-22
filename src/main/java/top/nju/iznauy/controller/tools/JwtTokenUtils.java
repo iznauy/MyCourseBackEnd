@@ -40,7 +40,7 @@ public class JwtTokenUtils {
     }
 
     public static UserType getUserType(String token) {
-        return UserType.valueOf((String)getTokenClaims(token).getHeader().get(USER_TYPE_HEADER));
+        return UserType.valueOf((String) getTokenClaims(token).getHeader().get(USER_TYPE_HEADER));
     }
 
     public static boolean isExpiration(String token) {
