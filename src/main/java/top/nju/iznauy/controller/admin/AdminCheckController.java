@@ -1,6 +1,7 @@
 package top.nju.iznauy.controller.admin;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import top.nju.iznauy.controller.tools.AdminToken;
@@ -50,7 +51,11 @@ public class AdminCheckController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void checkCourseRelease(int id, boolean approve) {
         log.info("Check CourseRelease: " + id + ", " + approve);
-        checkService.checkCourse(id, approve);
+        checkService.checkCourseRelease(id, approve);
     }
 
+    @Autowired
+    public void setCheckService(AdminCheckService checkService) {
+        this.checkService = checkService;
+    }
 }

@@ -1,6 +1,7 @@
 package top.nju.iznauy.controller.teacher;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import top.nju.iznauy.controller.tools.TeacherToken;
@@ -47,7 +48,11 @@ public class TeacherCourseController {
     @PostMapping(value= "/release")
     @TeacherToken
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void releaseCourse(@UserEmail String email, int id, Date beginDate, Date endDate, int classOrder,
+    public void releaseCourse(@UserEmail String email, int id,
+                              @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+                              Date beginDate,
+                              @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+                              Date endDate, int classOrder,
                               boolean hasQuota, int quota) {
         teacherCourseService.releaseCourse(email, id, beginDate, endDate, classOrder, hasQuota, quota);
     }

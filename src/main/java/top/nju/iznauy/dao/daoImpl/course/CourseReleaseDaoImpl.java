@@ -23,17 +23,16 @@ public class CourseReleaseDaoImpl implements CourseReleaseDao {
 
     @Override
     public List<CourseReleasePO> getCourseReleaseByCourseId(int courseId) {
-        return null;
+        return courseReleaseRepository.findAll((e0, e1, e2) -> {
+            e1.where(
+                    e2.equal(e0.<CoursePO>get("course").get("courseId"), courseId));
+            return null;
+        });
     }
 
     @Override
     public CourseReleasePO getCourseReleaseById(int id) {
-        return courseReleaseRepository.findOne((e0, e1, e2) -> {
-            e1.where(
-                    e2.equal(e0.<CoursePO>get("course").get("id"), id)
-            );
-            return null;
-        }).orElse(null);
+        return courseReleaseRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -59,7 +58,7 @@ public class CourseReleaseDaoImpl implements CourseReleaseDao {
         return courseReleaseRepository.findOne((e0, e1, e2) -> {
             e1.where(
                     e2.and(
-                            e2.equal(e0.<CoursePO>get("course").get("id"), courseId),
+                            e2.equal(e0.<CoursePO>get("course").get("courseId"), courseId),
                             e2.equal(e0.get("classOrder"), classOrder))
             );
             return null;
