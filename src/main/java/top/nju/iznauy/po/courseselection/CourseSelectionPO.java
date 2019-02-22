@@ -34,10 +34,11 @@ public class CourseSelectionPO {
     private Integer score;
 
     public CourseSelectionPO(int courseId, int courseReleaseId,
-                             String studentMail, Integer score) {
+                             String studentMail) {
         this.courseId = courseId;
         this.courseReleaseId = courseReleaseId;
         this.studentMail = studentMail;
-        this.score = score;
+
+        this.score = null;
     }
 }
