@@ -47,7 +47,10 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public List<StudentPO> getStudents(int limit) {
         PageRequest pageRequest = PageRequest.of(0, limit);
-        return studentRepository.findAll(pageRequest).getContent();
+        return studentRepository.findAll((e0, e1, e2) -> {
+            e1.where(e2.equal(e0.<Boolean>get("hasValidated"), true)); // 必须是已经激活的用户才会被分配课程
+            return null;
+        }, pageRequest).getContent();
     }
 
     @Override

@@ -49,7 +49,9 @@ public class StudentCourseController {
     @DeleteMapping("/course/select")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void quitCourse(@UserEmail String email, int id) {
+        log.info("用户：" + email + " 取消选择课程" + id);
         courseService.quitCourse(email, id);
+        log.info("取消选课完毕");
     }
 
     @Autowired

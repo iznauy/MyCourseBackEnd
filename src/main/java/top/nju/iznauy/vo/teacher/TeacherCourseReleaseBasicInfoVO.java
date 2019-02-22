@@ -36,6 +36,8 @@ public class TeacherCourseReleaseBasicInfoVO {
 
     private int quota;
 
+    private int count;
+
     public TeacherCourseReleaseBasicInfoVO(CourseReleasePO po) {
         id = po.getId();
         courseId = po.getCourse().getCourseId();
@@ -46,6 +48,7 @@ public class TeacherCourseReleaseBasicInfoVO {
         classOrder = po.getClassOrder();
         hasQuota = po.isHasQuota();
         quota = po.getQuota();
+        count = po.getCount();
     }
 
 }
