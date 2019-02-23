@@ -23,6 +23,8 @@ public interface CourseReleaseDao {
 
     List<CourseReleasePO> getAllRelease();
 
+    List<CourseReleasePO> getAllReleases(String email);
+
     List<CourseReleasePO> getReleasesByIds(Collection<Integer> ids);
 
     CourseReleasePO getReleaseByCourseIdAndClassOrder(int courseId, int classOrder);

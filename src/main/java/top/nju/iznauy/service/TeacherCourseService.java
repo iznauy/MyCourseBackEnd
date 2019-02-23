@@ -20,6 +20,8 @@ public interface TeacherCourseService {
 
     List<TeacherCourseReleaseBasicInfoVO> getAllReleasesByCourseId(String email, int courseId);
 
+    List<TeacherCourseReleaseBasicInfoVO> getAllReleasesByTeacherEmail(String email);
+
     void releaseCourse(String email, int courseId, Date beginDate, Date endDate, int classOrder,
                        boolean hasQuota, int quota);
 }

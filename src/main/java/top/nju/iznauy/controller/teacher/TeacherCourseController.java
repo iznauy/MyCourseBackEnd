@@ -1,5 +1,6 @@
 package top.nju.iznauy.controller.teacher;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import java.util.List;
  * @author iznauy
  */
 @RestController
+@Slf4j
 @RequestMapping(value = "teacher/course")
 public class TeacherCourseController {
 
@@ -45,6 +47,12 @@ public class TeacherCourseController {
         return teacherCourseService.getAllReleasesByCourseId(email, courseId);
     }
 
+    @GetMapping(value = "/allRelease")
+    @TeacherToken
+    public List<TeacherCourseReleaseBasicInfoVO> getAllCourseReleases(@UserEmail String email) {
+        return teacherCourseService.getAllReleasesByTeacherEmail(email);
+    }
+
     @PostMapping(value = "/release")
     @TeacherToken
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -54,6 +62,7 @@ public class TeacherCourseController {
                               @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
                                       Date endDate, int classOrder,
                               boolean hasQuota, int quota) {
+        log.info("创建发布: " + beginDate + " to "  + endDate);
         teacherCourseService.releaseCourse(email, id, beginDate, endDate, classOrder, hasQuota, quota);
     }
 

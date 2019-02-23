@@ -72,6 +72,14 @@ public class CourseReleaseDaoImpl implements CourseReleaseDao {
     }
 
     @Override
+    public List<CourseReleasePO> getAllReleases(String email) {
+        return courseReleaseRepository.findAll((e0, e1, e2) -> {
+            e1.where(e2.equal(e0.<CoursePO>get("course").<String>get("courseCreatorMail"), email));
+            return null;
+        });
+    }
+
+    @Override
     public void saveRelease(CourseReleasePO releasePO) {
         courseReleaseRepository.save(releasePO);
     }

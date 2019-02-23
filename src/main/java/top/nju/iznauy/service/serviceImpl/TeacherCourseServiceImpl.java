@@ -49,6 +49,12 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
     }
 
     @Override
+    public List<TeacherCourseReleaseBasicInfoVO> getAllReleasesByTeacherEmail(String email) {
+        return courseReleaseDao.getAllReleases(email)
+                .stream().map(TeacherCourseReleaseBasicInfoVO::new).collect(Collectors.toList());
+    }
+
+    @Override
     public void releaseCourse(String email, int courseId, Date beginDate, Date endDate,
                               int classOrder, boolean hasQuota, int quota) {
         CourseReleasePO sameCourseRelease = courseReleaseDao.getReleaseByCourseIdAndClassOrder(courseId, classOrder);
