@@ -2,6 +2,8 @@ package top.nju.iznauy.po.courseassignment;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,6 +18,7 @@ import java.util.Date;
 @Entity
 @Data
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class CourseAssignmentPO {
 
     @Id
@@ -34,6 +37,10 @@ public class CourseAssignmentPO {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date deadLine;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date createDate;
 
     public CourseAssignmentPO(int courseReleaseId, String name, String description, Date deadLine) {
         this.courseReleaseId = courseReleaseId;
