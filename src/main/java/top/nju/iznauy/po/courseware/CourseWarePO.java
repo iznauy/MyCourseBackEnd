@@ -41,10 +41,10 @@ public class CourseWarePO {
     @CreatedDate
     private Date upLoadTime;
 
-    public CourseWarePO(int courseId, String name, String path, boolean deleted) {
+    public CourseWarePO(int courseId, String name, String path) {
         this.courseId = courseId;
         this.name = name;
         this.path = path;
-        this.deleted = deleted;
+        this.deleted = false;
     }
 }

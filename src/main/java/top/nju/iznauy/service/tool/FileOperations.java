@@ -42,4 +42,17 @@ public class FileOperations {
         return avatarPath;
     }
 
+    public static String saveCourseWare(MultipartFile ware, int courseId, String name) {
+        String filename = "" + courseId + "_" + name + "_" + System.currentTimeMillis() + "." + getExtension(ware);
+        String warePath;
+        try {
+            Path path = Paths.get(ResourceUtils.getURL(StaticResourceConfig.COURSEWARE_BASE_PATH).getPath());
+            warePath = storeMultipartFile(path, ware, filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new ServerUnknownException("未知错误");
+        }
+        return warePath;
+    }
+
 }
