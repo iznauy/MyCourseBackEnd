@@ -1,11 +1,19 @@
 package top.nju.iznauy.controller.course;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import top.nju.iznauy.controller.tools.StudentToken;
 import top.nju.iznauy.controller.tools.TeacherToken;
+import top.nju.iznauy.controller.tools.UserEmail;
 import top.nju.iznauy.controller.tools.UserToken;
+import top.nju.iznauy.service.CourseAssignmentService;
 import top.nju.iznauy.vo.course.AssignmentDetailVO;
+import top.nju.iznauy.vo.course.CourseAssignmentCommitVO;
 import top.nju.iznauy.vo.course.CourseAssignmentVO;
+import top.nju.iznauy.vo.course.TeacherAssignmentCommitStateVO;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,26 +26,48 @@ import java.util.List;
 @RequestMapping("/course")
 public class CourseAssignmentController {
 
+    private CourseAssignmentService assignmentService;
+
     @PostMapping("/assignment/create")
     @TeacherToken
-    public void releaseAssignment() {
-
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void releaseAssignment(@RequestParam int courseReleaseId, @RequestParam String name,
+                                  @RequestParam String description, @RequestParam Date deadLine) {
+        assignmentService.releaseAssignment(courseReleaseId, name, description, deadLine);
     }
 
     @GetMapping("/assignments")
     @UserToken
-    public List<CourseAssignmentVO> getAssignments(@RequestParam int courseId) {
-        return null;
+    public List<CourseAssignmentVO> getAssignments(@RequestParam int courseReleaseId) {
+        return assignmentService.getAllAssignments(courseReleaseId);
     }
 
     @GetMapping("/assignment")
     @UserToken
-    public AssignmentDetailVO getAssignmentDetail(int assignmentId) {
-        return null;
+    public AssignmentDetailVO getAssignmentDetail(@RequestParam int assignmentId) {
+        return assignmentService.getAssignmentDetail(assignmentId);
     }
 
-    public void getAssigmentCommitState() {
-
+    @GetMapping("/assignment/own")
+    @StudentToken
+    public CourseAssignmentCommitVO getOwnAssignmentState(@UserEmail String email, @RequestParam int assignmentId) {
+        return assignmentService.getOwnAssignmentState(email, assignmentId);
     }
 
+    @TeacherToken
+    @GetMapping("/assignment/state")
+    public TeacherAssignmentCommitStateVO getWholeCommitState(@RequestParam int assignmentId) {
+        return assignmentService.getWholeCommitState(assignmentId);
+    }
+
+    @TeacherToken
+    @GetMapping("/assignment/download")
+    public String downloadAssignments(@RequestParam int assignmentId) {
+        return assignmentService.downloadAssignments(assignmentId);
+    }
+
+    @Autowired
+    public void setAssignmentService(CourseAssignmentService assignmentService) {
+        this.assignmentService = assignmentService;
+    }
 }

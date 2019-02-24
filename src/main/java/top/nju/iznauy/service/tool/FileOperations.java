@@ -14,6 +14,7 @@ import java.nio.file.StandardCopyOption;
 /**
  * Created on 06/02/2019.
  * Description:
+ * TODO: 这个类之中的方法需要被重写，因为太脆弱了，而且私有方法其实只对头像的存储有效
  *
  * @author iznauy
  */
