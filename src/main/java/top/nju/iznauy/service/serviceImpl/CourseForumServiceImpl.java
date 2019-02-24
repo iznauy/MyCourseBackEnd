@@ -5,20 +5,22 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.nju.iznauy.dao.CourseForumDao;
-import top.nju.iznauy.dao.StudentDao;
-import top.nju.iznauy.dao.TeacherDao;
+import top.nju.iznauy.dao.*;
 import top.nju.iznauy.entity.Pair;
 import top.nju.iznauy.entity.UserType;
 import top.nju.iznauy.exception.ServerUnknownException;
+import top.nju.iznauy.po.course.CoursePO;
+import top.nju.iznauy.po.course.CourseReleasePO;
 import top.nju.iznauy.po.courseforum.CoursePostPO;
 import top.nju.iznauy.po.courseforum.CourseReplyPO;
+import top.nju.iznauy.po.courseselection.CourseSelectionPO;
 import top.nju.iznauy.po.user.StudentPO;
 import top.nju.iznauy.po.user.TeacherPO;
 import top.nju.iznauy.service.CourseForumService;
 import top.nju.iznauy.vo.forum.PostListVO;
 import top.nju.iznauy.vo.forum.PostVO;
 import top.nju.iznauy.vo.forum.ReplyListVO;
+import top.nju.iznauy.vo.forum.SectionVO;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -38,6 +40,12 @@ public class CourseForumServiceImpl implements CourseForumService {
     private TeacherDao teacherDao;
 
     private StudentDao studentDao;
+
+    private CourseDao courseDao;
+
+    private CourseSelectionDao selectionDao;
+
+    private CourseReleaseDao releaseDao;
 
     private Map<String, UserInfoEntity> getUserInfoEntitiesForTeachers(Collection<String> teacherEmails) {
         Map<String, UserInfoEntity> resultMap = new HashMap<>();
@@ -62,6 +70,27 @@ public class CourseForumServiceImpl implements CourseForumService {
         userInfoEntities.putAll(teacherInfoEntities);
 
         return userInfoEntities;
+    }
+
+    private List<SectionVO> getTeacherAvailableSections(String email) {
+        return courseDao.getCoursesByCreatorEmail(email).stream()
+                .map(SectionVO::new).collect(Collectors.toList());
+    }
+    private List<SectionVO> getStudentAvailableSections(String email) {
+        Set<Integer> releaseIds = selectionDao.getSelectionsByUserEmail(email)
+                .stream().map(CourseSelectionPO::getCourseReleaseId).collect(Collectors.toSet());
+        return releaseDao.getReleasesByIds(releaseIds).stream().map(CourseReleasePO::getCourse).map(SectionVO::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<SectionVO> getAvailableSections(String email, UserType userType) {
+        if (userType == UserType.teacher) {
+            return getTeacherAvailableSections(email);
+        } else if (userType == UserType.student) {
+            return getStudentAvailableSections(email);
+        } else
+            return new ArrayList<>();
     }
 
     @Override
@@ -160,6 +189,21 @@ public class CourseForumServiceImpl implements CourseForumService {
     @Autowired
     public void setStudentDao(StudentDao studentDao) {
         this.studentDao = studentDao;
+    }
+
+    @Autowired
+    public void setCourseDao(CourseDao courseDao) {
+        this.courseDao = courseDao;
+    }
+
+    @Autowired
+    public void setSelectionDao(CourseSelectionDao selectionDao) {
+        this.selectionDao = selectionDao;
+    }
+
+    @Autowired
+    public void setReleaseDao(CourseReleaseDao releaseDao) {
+        this.releaseDao = releaseDao;
     }
 
     @AllArgsConstructor

@@ -4,6 +4,9 @@ import top.nju.iznauy.entity.UserType;
 import top.nju.iznauy.vo.forum.PostListVO;
 import top.nju.iznauy.vo.forum.PostVO;
 import top.nju.iznauy.vo.forum.ReplyListVO;
+import top.nju.iznauy.vo.forum.SectionVO;
+
+import java.util.List;
 
 /**
  * Created on 07/02/2019.
@@ -12,6 +15,8 @@ import top.nju.iznauy.vo.forum.ReplyListVO;
  * @author iznauy
  */
 public interface CourseForumService {
+
+    List<SectionVO> getAvailableSections(String email, UserType userType);
 
     void publishPost(String email, UserType userType, int courseId, String title, String content);
 

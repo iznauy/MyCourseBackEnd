@@ -12,6 +12,9 @@ import top.nju.iznauy.service.CourseForumService;
 import top.nju.iznauy.vo.forum.PostListVO;
 import top.nju.iznauy.vo.forum.PostVO;
 import top.nju.iznauy.vo.forum.ReplyListVO;
+import top.nju.iznauy.vo.forum.SectionVO;
+
+import java.util.List;
 
 /**
  * Created on 07/02/2019.
@@ -25,6 +28,13 @@ import top.nju.iznauy.vo.forum.ReplyListVO;
 public class CourseForumController {
 
     private CourseForumService courseForumService;
+
+    @UserToken
+    @GetMapping("/available")
+    @ResponseStatus(HttpStatus.OK)
+    public List<SectionVO> availableSections(@UserEmail String email, @Type UserType userType) {
+        return courseForumService.getAvailableSections(email, userType);
+    }
 
     @UserToken
     @PostMapping("/post")
