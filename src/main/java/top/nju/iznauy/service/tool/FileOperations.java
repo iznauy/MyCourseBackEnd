@@ -57,7 +57,7 @@ public class FileOperations {
     }
 
     public static String saveCourseAssignmentCommit(MultipartFile file, int assignmentId, String email) {
-        String filename = email + "." + getExtension(file);
+        String filename = email.split("@")[0] + "." + getExtension(file);
         String assignmentPath;
         try {
             Path basePath = Paths.get(ResourceUtils.getURL(StaticResourceConfig.ASSIGNMENT_BASE_PATH).getPath());

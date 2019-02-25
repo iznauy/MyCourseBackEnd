@@ -9,7 +9,6 @@ import top.nju.iznauy.dao.*;
 import top.nju.iznauy.entity.Pair;
 import top.nju.iznauy.entity.UserType;
 import top.nju.iznauy.exception.ServerUnknownException;
-import top.nju.iznauy.po.course.CoursePO;
 import top.nju.iznauy.po.course.CourseReleasePO;
 import top.nju.iznauy.po.courseforum.CoursePostPO;
 import top.nju.iznauy.po.courseforum.CourseReplyPO;
@@ -76,6 +75,7 @@ public class CourseForumServiceImpl implements CourseForumService {
         return courseDao.getCoursesByCreatorEmail(email).stream()
                 .map(SectionVO::new).collect(Collectors.toList());
     }
+
     private List<SectionVO> getStudentAvailableSections(String email) {
         Set<Integer> releaseIds = selectionDao.getSelectionsByUserEmail(email)
                 .stream().map(CourseSelectionPO::getCourseReleaseId).collect(Collectors.toSet());

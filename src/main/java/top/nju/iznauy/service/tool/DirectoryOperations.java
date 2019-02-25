@@ -16,7 +16,8 @@ import java.nio.file.Paths;
  */
 public class DirectoryOperations {
 
-    private DirectoryOperations() {}
+    private DirectoryOperations() {
+    }
 
     private static void createNewFolder(String base, String newName) {
         try {

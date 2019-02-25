@@ -62,7 +62,7 @@ public class TeacherCourseController {
                               @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
                                       Date endDate, int classOrder,
                               boolean hasQuota, int quota) {
-        log.info("创建发布: " + beginDate + " to "  + endDate);
+        log.info("创建发布: " + beginDate + " to " + endDate);
         teacherCourseService.releaseCourse(email, id, beginDate, endDate, classOrder, hasQuota, quota);
     }
 

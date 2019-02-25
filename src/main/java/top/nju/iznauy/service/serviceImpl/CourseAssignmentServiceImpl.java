@@ -9,6 +9,7 @@ import top.nju.iznauy.po.courseassignment.CourseAssignmentPO;
 import top.nju.iznauy.service.CourseAssignmentService;
 import top.nju.iznauy.service.tool.DirectoryOperations;
 import top.nju.iznauy.service.tool.FileOperations;
+import top.nju.iznauy.service.tool.ZipOperations;
 import top.nju.iznauy.vo.course.AssignmentDetailVO;
 import top.nju.iznauy.vo.course.CourseAssignmentCommitVO;
 import top.nju.iznauy.vo.course.CourseAssignmentVO;
@@ -63,8 +64,7 @@ public class CourseAssignmentServiceImpl implements CourseAssignmentService {
 
     @Override
     public String downloadAssignments(int assignmentId) {
-        // TODO: Learn how to zip
-        return null;
+        return ZipOperations.assignmentFolderToZip(assignmentId);
     }
 
     @Override
