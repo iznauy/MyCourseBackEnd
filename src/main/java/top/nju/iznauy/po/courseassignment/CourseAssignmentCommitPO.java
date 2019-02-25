@@ -31,6 +31,9 @@ public class CourseAssignmentCommitPO {
     @Column(nullable = false)
     private boolean scored;
 
+    @Column(nullable = false)
+    private String upLoader;
+
     @Column
     private Integer score;
 
@@ -38,11 +41,12 @@ public class CourseAssignmentCommitPO {
     @Column(nullable = false)
     private Date upLoadTime;
 
-    public CourseAssignmentCommitPO(int assignmentId, String path, boolean scored, Integer score, Date upLoadTime) {
+    public CourseAssignmentCommitPO(int assignmentId, String path, String upLoader, Date upLoadTime) {
         this.assignmentId = assignmentId;
         this.path = path;
-        this.scored = scored;
-        this.score = score;
+        this.upLoader = upLoader;
+        this.scored = false;
+        this.score = null;
         this.upLoadTime = upLoadTime;
     }
 }

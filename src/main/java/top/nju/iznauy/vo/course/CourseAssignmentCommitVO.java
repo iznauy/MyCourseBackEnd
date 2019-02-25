@@ -3,6 +3,7 @@ package top.nju.iznauy.vo.course;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import top.nju.iznauy.po.courseassignment.CourseAssignmentCommitPO;
 
 import java.util.Date;
 
@@ -26,5 +27,13 @@ public class CourseAssignmentCommitVO {
     private Integer score;
 
     private Date upLoadTime;
+
+    public CourseAssignmentCommitVO(CourseAssignmentCommitPO po) {
+        id = po.getId();
+        path = po.getPath();
+        scored = po.isScored();
+        score = po.getScore();
+        upLoadTime = po.getUpLoadTime();
+    }
 
 }

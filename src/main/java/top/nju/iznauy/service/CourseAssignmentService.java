@@ -1,5 +1,6 @@
 package top.nju.iznauy.service;
 
+import org.springframework.web.multipart.MultipartFile;
 import top.nju.iznauy.vo.course.AssignmentDetailVO;
 import top.nju.iznauy.vo.course.CourseAssignmentCommitVO;
 import top.nju.iznauy.vo.course.CourseAssignmentVO;
@@ -28,5 +29,7 @@ public interface CourseAssignmentService {
     TeacherAssignmentCommitStateVO getWholeCommitState(int assignmentId);
 
     String downloadAssignments(int assignmentId);
+
+    void upLoadAssignment(MultipartFile assignment, int assignmentId, String email);
 
 }

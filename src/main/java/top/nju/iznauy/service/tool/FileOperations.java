@@ -56,4 +56,8 @@ public class FileOperations {
         return warePath;
     }
 
+    public static String saveCourseAssignmentCommit(MultipartFile file, int assignmentId, String email) {
+        return null;
+    }
+
 }
