@@ -7,6 +7,7 @@ import top.nju.iznauy.dao.CourseAssignmentDao;
 import top.nju.iznauy.po.courseassignment.CourseAssignmentCommitPO;
 import top.nju.iznauy.po.courseassignment.CourseAssignmentPO;
 import top.nju.iznauy.service.CourseAssignmentService;
+import top.nju.iznauy.service.tool.DirectoryOperations;
 import top.nju.iznauy.service.tool.FileOperations;
 import top.nju.iznauy.vo.course.AssignmentDetailVO;
 import top.nju.iznauy.vo.course.CourseAssignmentCommitVO;
@@ -32,6 +33,7 @@ public class CourseAssignmentServiceImpl implements CourseAssignmentService {
     public void releaseAssignment(int courseReleaseId, String name, String description, Date deadLine) {
         CourseAssignmentPO assignment = new CourseAssignmentPO(courseReleaseId, name, description, deadLine);
         assignmentDao.saveAssignment(assignment);
+        DirectoryOperations.createAssignmentFolder(assignment.getId());
     }
 
     @Override

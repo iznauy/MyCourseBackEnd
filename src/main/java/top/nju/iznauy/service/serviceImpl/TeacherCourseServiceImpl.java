@@ -9,6 +9,7 @@ import top.nju.iznauy.exception.NotExistsException;
 import top.nju.iznauy.po.course.CoursePO;
 import top.nju.iznauy.po.course.CourseReleasePO;
 import top.nju.iznauy.service.TeacherCourseService;
+import top.nju.iznauy.service.tool.DirectoryOperations;
 import top.nju.iznauy.vo.teacher.TeacherCourseBasicInfoVO;
 import top.nju.iznauy.vo.teacher.TeacherCourseReleaseBasicInfoVO;
 
@@ -31,7 +32,9 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 
     @Override
     public void createCourse(String email, String courseName, String courseDescription) {
-        courseDao.saveCourse(new CoursePO(courseName, courseDescription, email));
+        CoursePO coursePO = new CoursePO(courseName, courseDescription, email);
+        courseDao.saveCourse(coursePO);
+        DirectoryOperations.createCourseFolder(coursePO.getCourseId());
     }
 
     @Override

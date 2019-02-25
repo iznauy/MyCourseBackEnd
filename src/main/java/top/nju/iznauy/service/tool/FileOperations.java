@@ -14,17 +14,12 @@ import java.nio.file.StandardCopyOption;
 /**
  * Created on 06/02/2019.
  * Description:
- * TODO: 这个类之中的方法需要被重写，因为太脆弱了，而且私有方法其实只对头像的存储有效
+ * 里面的方法还是很脆弱，而且没有经过很充分的测试。
  *
  * @author iznauy
  */
 public class FileOperations {
 
-    private static String storeMultipartFile(Path basePath, MultipartFile file, String name) throws IOException {
-        Path targetPath = basePath.resolve(name);
-        Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
-        return basePath.getParent().getParent().relativize(targetPath).normalize().toString(); // 这个方法非常的危险
-    }
 
     private static String getExtension(MultipartFile file) {
         return file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
@@ -35,7 +30,9 @@ public class FileOperations {
         String avatarPath;
         try {
             Path path = Paths.get(ResourceUtils.getURL(StaticResourceConfig.AVATAR_BASE_PATH).getPath());
-            avatarPath = storeMultipartFile(path, avatar, filename);
+            Path targetPath = path.resolve(filename);
+            Files.copy(avatar.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+            avatarPath = path.getParent().getParent().relativize(targetPath).normalize().toString();
         } catch (IOException e) {
             e.printStackTrace();
             throw new ServerUnknownException("未知错误");
@@ -47,8 +44,11 @@ public class FileOperations {
         String filename = "" + courseId + "_" + name + "_" + System.currentTimeMillis() + "." + getExtension(ware);
         String warePath;
         try {
-            Path path = Paths.get(ResourceUtils.getURL(StaticResourceConfig.COURSEWARE_BASE_PATH).getPath());
-            warePath = storeMultipartFile(path, ware, filename);
+            Path basePath = Paths.get(ResourceUtils.getURL(StaticResourceConfig.COURSEWARE_BASE_PATH).getPath());
+            Path path = basePath.resolve(courseId + "");
+            Path targetPath = path.resolve(filename);
+            Files.copy(ware.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+            warePath = basePath.getParent().getParent().relativize(targetPath).normalize().toString();
         } catch (IOException e) {
             e.printStackTrace();
             throw new ServerUnknownException("未知错误");
@@ -57,7 +57,19 @@ public class FileOperations {
     }
 
     public static String saveCourseAssignmentCommit(MultipartFile file, int assignmentId, String email) {
-        return null;
+        String filename = email + "." + getExtension(file);
+        String assignmentPath;
+        try {
+            Path basePath = Paths.get(ResourceUtils.getURL(StaticResourceConfig.ASSIGNMENT_BASE_PATH).getPath());
+            Path path = basePath.resolve("" + assignmentId);
+            Path targetPath = path.resolve(filename);
+            Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+            assignmentPath = basePath.getParent().getParent().relativize(targetPath).normalize().toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new ServerUnknownException("未知错误");
+        }
+        return assignmentPath;
     }
 
 }
