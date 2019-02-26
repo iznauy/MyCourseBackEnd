@@ -40,7 +40,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 JwtTokenUtils.isExpiration(token);
             } catch (ExpiredJwtException e) {
                 e.printStackTrace();
-                throw new TokenExpiredException("token过期");
+                throw new TokenExpiredException("token过期，请重新登录!");
             } catch (Exception e) {
                 e.printStackTrace();
                 unknownError = true;

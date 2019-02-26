@@ -37,6 +37,8 @@ public class CourseAllocateServiceImpl implements CourseAllocateService {
     @Transactional
     public void allocateCourseReleaseRandomly(int releaseId) {
         CourseReleasePO releasePO = releaseDao.getCourseReleaseById(releaseId);
+        if (releasePO.getQuota() < 1)
+            return;
         List<StudentPO> students = studentDao.getStudents(releasePO.getQuota());
 
         // 更改这门课的选课人数
