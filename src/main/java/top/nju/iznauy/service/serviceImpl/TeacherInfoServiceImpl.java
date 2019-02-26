@@ -31,7 +31,7 @@ public class TeacherInfoServiceImpl implements TeacherInfoService {
         TeacherPO teacherPO = teacherDao.getTeacherByEmail(email);
         checkTeacher(teacherPO);
 
-        return new TeacherBasicInfoVO(email, teacherPO.getUserName());
+        return new TeacherBasicInfoVO(email, teacherPO.getUserName(), teacherPO.getAvatar());
     }
 
     @Override

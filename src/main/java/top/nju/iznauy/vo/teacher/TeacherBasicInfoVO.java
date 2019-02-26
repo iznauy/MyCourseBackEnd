@@ -19,4 +19,6 @@ public class TeacherBasicInfoVO {
 
     private String username;
 
+    private String avatar;
+
 }
