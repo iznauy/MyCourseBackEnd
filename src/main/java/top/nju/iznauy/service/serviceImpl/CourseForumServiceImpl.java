@@ -72,7 +72,7 @@ public class CourseForumServiceImpl implements CourseForumService {
     }
 
     private List<SectionVO> getTeacherAvailableSections(String email) {
-        return courseDao.getCoursesByCreatorEmail(email).stream()
+        return courseDao.getApprovedCoursesByCreatorEmail(email).stream()
                 .map(SectionVO::new).collect(Collectors.toList());
     }
 

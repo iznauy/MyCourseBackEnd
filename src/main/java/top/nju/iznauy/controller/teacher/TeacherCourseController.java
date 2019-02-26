@@ -11,6 +11,7 @@ import top.nju.iznauy.service.TeacherCourseService;
 import top.nju.iznauy.vo.teacher.TeacherCourseBasicInfoVO;
 import top.nju.iznauy.vo.teacher.TeacherCourseReleaseBasicInfoVO;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +39,9 @@ public class TeacherCourseController {
     @GetMapping(value = "/list")
     @TeacherToken
     public List<TeacherCourseBasicInfoVO> getOwnCreatedCourses(@UserEmail String email) {
-        return teacherCourseService.getOwnCreatedCourseList(email);
+        List<TeacherCourseBasicInfoVO> basicInfoVOS = teacherCourseService.getOwnCreatedCourseList(email);
+        Collections.sort(basicInfoVOS);
+        return basicInfoVOS;
     }
 
     @GetMapping(value = "/release")

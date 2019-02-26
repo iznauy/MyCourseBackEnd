@@ -16,7 +16,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeacherCourseBasicInfoVO {
+public class TeacherCourseBasicInfoVO implements Comparable<TeacherCourseBasicInfoVO> {
 
     private int id;
 
@@ -39,4 +39,13 @@ public class TeacherCourseBasicInfoVO {
         createDate = po.getCreateDate();
     }
 
+    @Override
+    public int compareTo(TeacherCourseBasicInfoVO o) {
+        if (o.createDate.before(createDate))
+            return -1;
+        else if (createDate.before(o.createDate))
+            return 1;
+        else
+            return 0;
+    }
 }

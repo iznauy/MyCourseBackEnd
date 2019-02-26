@@ -20,6 +20,8 @@ public interface CourseDao {
 
     List<CoursePO> getCoursesByCreatorEmail(String email);
 
+    List<CoursePO> getApprovedCoursesByCreatorEmail(String email);
+
     List<CoursePO> getAllCourses();
 
     List<CoursePO> getCoursesByCheckState(boolean hasChecked);

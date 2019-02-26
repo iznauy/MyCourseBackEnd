@@ -30,6 +30,11 @@ public class CourseDaoImpl implements CourseDao {
 
 
     @Override
+    public List<CoursePO> getApprovedCoursesByCreatorEmail(String email) {
+        return courseRepository.findAllByHasApprovedAndCourseCreatorMail(true, email);
+    }
+
+    @Override
     public List<CoursePO> getCoursesByCreatorEmail(String email) {
         return courseRepository.findAllByCourseCreatorMail(email);
     }
