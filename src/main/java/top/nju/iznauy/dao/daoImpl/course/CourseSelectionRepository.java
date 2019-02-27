@@ -17,4 +17,6 @@ public interface CourseSelectionRepository extends CrudRepository<CourseSelectio
 
     CourseSelectionPO findByCourseReleaseIdAndStudentMail(int courseReleaseId, String email);
 
+    List<CourseSelectionPO> findAllByCourseReleaseId(int releaseId);
+
 }

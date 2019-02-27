@@ -44,6 +44,11 @@ public class CourseSelectionDaoImpl implements CourseSelectionDao {
         return selectionRepository.findAllByStudentMail(email);
     }
 
+    @Override
+    public List<CourseSelectionPO> getSelectionsByReleaseId(int releaseId) {
+        return selectionRepository.findAllByCourseReleaseId(releaseId);
+    }
+
     @Autowired
     public void setSelectionRepository(CourseSelectionRepository selectionRepository) {
         this.selectionRepository = selectionRepository;

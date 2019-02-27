@@ -23,4 +23,6 @@ public interface CourseSelectionDao {
 
     List<CourseSelectionPO> getSelectionsByUserEmail(String email);
 
+    List<CourseSelectionPO> getSelectionsByReleaseId(int releaseId);
+
 }
