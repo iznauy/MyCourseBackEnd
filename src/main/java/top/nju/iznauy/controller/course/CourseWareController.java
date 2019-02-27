@@ -34,7 +34,7 @@ public class CourseWareController {
     @PostMapping("/ware")
     @TeacherToken
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void addCourseWare(int courseId, String name, MultipartFile ware) {
+    public void addCourseWare(int courseId, String name, @RequestBody MultipartFile ware) {
         courseWareService.addCourseWare(courseId, name, ware);
     }
 

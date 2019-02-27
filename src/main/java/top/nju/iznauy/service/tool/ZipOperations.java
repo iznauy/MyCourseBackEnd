@@ -51,7 +51,7 @@ public class ZipOperations {
             Path targetFile = path.resolve("" + assignmentId + ".zip").normalize();
             Path rawDirectory = path.resolve("" + assignmentId).normalize();
             zip(targetFile.toString(), rawDirectory.toString());
-            result = targetFile.toString();
+            result = path.getParent().getParent().relativize(targetFile).normalize().toString();
         } catch (IOException e) {
             e.printStackTrace();
             throw new ServerUnknownException("未知错误");

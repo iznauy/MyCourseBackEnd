@@ -1,6 +1,7 @@
 package top.nju.iznauy.controller.course;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,8 +33,8 @@ public class CourseAssignmentController {
     @PostMapping("/assignment/create")
     @TeacherToken
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void releaseAssignment(@RequestParam int courseReleaseId, @RequestParam String name,
-                                  @RequestParam String description, @RequestParam Date deadLine) {
+    public void releaseAssignment(int courseReleaseId, String name,
+                                  String description, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date deadLine) {
         assignmentService.releaseAssignment(courseReleaseId, name, description, deadLine);
     }
 
