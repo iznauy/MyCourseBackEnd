@@ -64,7 +64,7 @@ public class CourseAssignmentController {
 
     @StudentToken
     @PostMapping("/assignment/commit")
-    public void commitAssignment(MultipartFile assignment, @UserEmail String email, int assignmentId) {
+    public void commitAssignment(@RequestBody MultipartFile assignment, @UserEmail String email, int assignmentId) {
         assignmentService.upLoadAssignment(assignment, assignmentId, email);
     }
 

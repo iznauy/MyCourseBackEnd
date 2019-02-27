@@ -30,13 +30,13 @@ public class CourseInfoController {
         return infoService.getCourseInfo(id);
     }
 
-    @StudentToken
+    @TeacherToken
     @GetMapping("/course/member")
     public List<ClassStudentVO> getStudentsByReleases(int releaseId) {
         return infoService.getStudentsByReleases(releaseId);
     }
 
-    @TeacherToken
+    @StudentToken
     @GetMapping("/release/member")
     public List<ClassmateVO> getClassmates(int releaseId) {
         return infoService.getClassmatesByReleases(releaseId);
