@@ -58,4 +58,20 @@ public class CoursePO {
         this.hasApproved = false;
         this.hasChecked = false;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        CoursePO coursePO = (CoursePO) o;
+
+        return courseId == coursePO.courseId;
+    }
+
+    @Override
+    public int hashCode() {
+        return courseId;
+    }
 }
