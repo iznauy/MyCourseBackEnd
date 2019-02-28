@@ -2,15 +2,14 @@ package top.nju.iznauy.service.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.nju.iznauy.dao.CourseDao;
-import top.nju.iznauy.dao.CourseSelectionDao;
-import top.nju.iznauy.dao.StudentDao;
-import top.nju.iznauy.dao.TeacherDao;
+import top.nju.iznauy.dao.*;
+import top.nju.iznauy.po.course.BroadCastingPO;
 import top.nju.iznauy.po.course.CoursePO;
 import top.nju.iznauy.po.courseselection.CourseSelectionPO;
 import top.nju.iznauy.po.user.StudentPO;
 import top.nju.iznauy.po.user.TeacherPO;
 import top.nju.iznauy.service.CourseInfoService;
+import top.nju.iznauy.vo.course.BroadCastingVO;
 import top.nju.iznauy.vo.course.ClassStudentVO;
 import top.nju.iznauy.vo.course.ClassmateVO;
 import top.nju.iznauy.vo.course.CourseInfoVO;
@@ -36,6 +35,8 @@ public class CourseInfoServiceImpl implements CourseInfoService {
 
     private StudentDao studentDao;
 
+    private CourseBroadCastingDao broadCastingDao;
+
     @Override
     public CourseInfoVO getCourseInfo(int id) {
         CoursePO coursePO = courseDao.getCourseById(id);
@@ -59,6 +60,21 @@ public class CourseInfoServiceImpl implements CourseInfoService {
         return getReleaseStudents(releaseId).stream().map(ClassmateVO::new).collect(Collectors.toList());
     }
 
+    @Override
+    public BroadCastingVO getBroadCastingByReleaseId(int releaseId) {
+        BroadCastingPO po = broadCastingDao.getLatestBroadCasting(releaseId);
+        if (po != null)
+            return new BroadCastingVO(po);
+        else
+            return new BroadCastingVO();
+    }
+
+    @Override
+    public void addBroadCasting(int releaseId, String content) {
+        BroadCastingPO po = new BroadCastingPO(releaseId, content);
+        broadCastingDao.addBroadCasting(po);
+    }
+
     @Autowired
     public void setTeacherDao(TeacherDao teacherDao) {
         this.teacherDao = teacherDao;
@@ -77,5 +93,10 @@ public class CourseInfoServiceImpl implements CourseInfoService {
     @Autowired
     public void setStudentDao(StudentDao studentDao) {
         this.studentDao = studentDao;
+    }
+
+    @Autowired
+    public void setBroadCastingDao(CourseBroadCastingDao broadCastingDao) {
+        this.broadCastingDao = broadCastingDao;
     }
 }

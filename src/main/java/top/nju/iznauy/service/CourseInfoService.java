@@ -1,5 +1,7 @@
 package top.nju.iznauy.service;
 
+import top.nju.iznauy.po.course.BroadCastingPO;
+import top.nju.iznauy.vo.course.BroadCastingVO;
 import top.nju.iznauy.vo.course.ClassStudentVO;
 import top.nju.iznauy.vo.course.ClassmateVO;
 import top.nju.iznauy.vo.course.CourseInfoVO;
@@ -19,5 +21,9 @@ public interface CourseInfoService {
     List<ClassStudentVO> getStudentsByReleases(int releaseId);
 
     List<ClassmateVO> getClassmatesByReleases(int releaseId);
+
+    BroadCastingVO getBroadCastingByReleaseId(int releaseId);
+
+    void addBroadCasting(int releaseId, String content);
 
 }
