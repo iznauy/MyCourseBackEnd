@@ -43,6 +43,9 @@ public class CourseReleasePO {
     private int classOrder;
 
     @Column(nullable = false)
+    private String broadCast = "";
+
+    @Column(nullable = false)
     private boolean hasQuota;
 
     @Column(nullable = false)

@@ -41,21 +41,8 @@ public class CourseReplyPO {
     @CreatedDate
     private Date createTime;
 
-//    @ManyToOne(targetEntity = CoursePostPO.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "replyTo")
-//    private CoursePostPO replyTo;
-
     @Column(nullable = false)
     private int replyTo;
-
-//    public CourseReplyPO(String context, String creatorEmail,
-//                         Identity creatorIdentity, Date createTime, CoursePostPO replyTo) {
-//        this.context = context;
-//        this.creatorEmail = creatorEmail;
-//        this.creatorIdentity = creatorIdentity;
-//        this.createTime = createTime;
-//        this.replyTo = replyTo;
-//    }
 
     public CourseReplyPO(String content, String creatorEmail, UserType creatorIdentity, int replyTo) {
         this.content = content;

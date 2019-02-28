@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import top.nju.iznauy.dao.CourseForumDao;
 import top.nju.iznauy.entity.Pair;
 import top.nju.iznauy.exception.ServerUnknownException;
@@ -56,6 +57,7 @@ public class CourseForumDaoImpl implements CourseForumDao {
     }
 
     @Override
+    @Transactional
     public void saveReply(CourseReplyPO replyPO) {
         int coursePost = replyPO.getReplyTo();
         CoursePostPO postPO = postRepository.findById(coursePost).orElse(null);
