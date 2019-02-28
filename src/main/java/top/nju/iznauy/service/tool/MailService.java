@@ -20,17 +20,17 @@ public class MailService {
 
     private JavaMailSender sender;
 
-    public void sentMail(String from, String to, String title, String content) {
+    public void sentMail(String to, String title, String content) {
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(from);
+        message.setFrom(FROM);
         message.setTo(to);
         message.setSubject(title);
         message.setText(content);
 
         sender.send(message);
 
-        log.info("Send email from " + from + ", to " + to);
+        log.info("Send email from " + FROM + ", to " + to);
         log.info("Title: " + title);
         log.info("Content: " + content);
 
@@ -41,7 +41,7 @@ public class MailService {
         String title = "MyCourse激活邮件";
         String content = "您的账号激活码为：" + code + "，清注意及时激活。";
 
-        sentMail(FROM, to, title, content);
+        sentMail(to, title, content);
     }
 
     @Autowired

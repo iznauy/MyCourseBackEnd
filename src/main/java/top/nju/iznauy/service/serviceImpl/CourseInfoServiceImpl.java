@@ -1,14 +1,19 @@
 package top.nju.iznauy.service.serviceImpl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import top.nju.iznauy.dao.*;
 import top.nju.iznauy.po.course.BroadCastingPO;
 import top.nju.iznauy.po.course.CoursePO;
+import top.nju.iznauy.po.course.CourseReleasePO;
 import top.nju.iznauy.po.courseselection.CourseSelectionPO;
 import top.nju.iznauy.po.user.StudentPO;
 import top.nju.iznauy.po.user.TeacherPO;
 import top.nju.iznauy.service.CourseInfoService;
+import top.nju.iznauy.service.tool.MailService;
 import top.nju.iznauy.vo.course.BroadCastingVO;
 import top.nju.iznauy.vo.course.ClassStudentVO;
 import top.nju.iznauy.vo.course.ClassmateVO;
@@ -25,6 +30,7 @@ import java.util.stream.Collectors;
  * @author iznauy
  */
 @Service
+@Slf4j
 public class CourseInfoServiceImpl implements CourseInfoService {
 
     private TeacherDao teacherDao;
@@ -36,6 +42,8 @@ public class CourseInfoServiceImpl implements CourseInfoService {
     private StudentDao studentDao;
 
     private CourseBroadCastingDao broadCastingDao;
+
+    private MailBroadCastingService broadCastingService;
 
     @Override
     public CourseInfoVO getCourseInfo(int id) {
@@ -70,9 +78,13 @@ public class CourseInfoServiceImpl implements CourseInfoService {
     }
 
     @Override
+    @Transactional
     public void addBroadCasting(int releaseId, String content) {
         BroadCastingPO po = new BroadCastingPO(releaseId, content);
         broadCastingDao.addBroadCasting(po);
+
+        broadCastingService.sendBroadCasting(releaseId, content);
+        log.info("发布公告方法结束！");
     }
 
     @Autowired
@@ -98,5 +110,10 @@ public class CourseInfoServiceImpl implements CourseInfoService {
     @Autowired
     public void setBroadCastingDao(CourseBroadCastingDao broadCastingDao) {
         this.broadCastingDao = broadCastingDao;
+    }
+
+    @Autowired
+    public void setBroadCastingService(MailBroadCastingService broadCastingService) {
+        this.broadCastingService = broadCastingService;
     }
 }
