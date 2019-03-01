@@ -2,7 +2,6 @@ package top.nju.iznauy.vo.course;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import top.nju.iznauy.po.course.BroadCastingPO;
 
 import java.util.Date;

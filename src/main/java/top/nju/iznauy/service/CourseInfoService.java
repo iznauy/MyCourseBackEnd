@@ -1,6 +1,5 @@
 package top.nju.iznauy.service;
 
-import top.nju.iznauy.po.course.BroadCastingPO;
 import top.nju.iznauy.vo.course.BroadCastingVO;
 import top.nju.iznauy.vo.course.ClassStudentVO;
 import top.nju.iznauy.vo.course.ClassmateVO;

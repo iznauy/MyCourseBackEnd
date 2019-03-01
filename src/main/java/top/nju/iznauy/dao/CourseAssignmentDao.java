@@ -4,7 +4,6 @@ import top.nju.iznauy.po.courseassignment.CourseAssignmentCommitPO;
 import top.nju.iznauy.po.courseassignment.CourseAssignmentPO;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**

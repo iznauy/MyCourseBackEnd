@@ -45,7 +45,7 @@ public class MailBroadCastingService {
         CoursePO coursePO = releaseDao.getCourseReleaseById(releaseId).getCourse();
         List<StudentPO> studentPOS = getReleaseStudents(releaseId);
 
-        for (StudentPO student: studentPOS) {
+        for (StudentPO student : studentPOS) {
             String title = "来自课程《" + coursePO.getCourseName() + "》的通知";
             mailService.sentMail(student.getMail(), title, content);
         }

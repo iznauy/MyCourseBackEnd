@@ -60,7 +60,7 @@ public class ScoreServiceImpl implements ScoreService {
             Map<String, Integer> scores = ScoreExcelOperations
                     .getScores(scoreFile.getName(), new FileInputStream(scoreFile));
 
-            for (CourseSelectionPO selectionPO: selections) {
+            for (CourseSelectionPO selectionPO : selections) {
                 Integer score = scores.get(selectionPO.getStudentMail());
                 selectionPO.setScore(score);
             }
@@ -93,7 +93,7 @@ public class ScoreServiceImpl implements ScoreService {
             Map<String, Integer> scores = ScoreExcelOperations
                     .getScores(scoreFile.getName(), new FileInputStream(scoreFile));
 
-            for (CourseAssignmentCommitPO commit: commits) {
+            for (CourseAssignmentCommitPO commit : commits) {
                 Integer score = scores.get(commit.getUpLoader());
                 commit.setScored(true);
                 commit.setScore(score);

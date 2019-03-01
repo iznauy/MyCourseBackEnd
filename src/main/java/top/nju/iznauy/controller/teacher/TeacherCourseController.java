@@ -61,8 +61,8 @@ public class TeacherCourseController {
     }
 
     @PostMapping(value = "/release/assignment/score")
-    public void uploadAssignmentScores(int assignmentId, @RequestBody MultipartFile scores, boolean publiczed) {
-        scoreService.addAssignmentScores(assignmentId, scores, publiczed);
+    public void uploadAssignmentScores(int assignmentId, @RequestBody MultipartFile scores, boolean publicized) {
+        scoreService.addAssignmentScores(assignmentId, scores, publicized);
     }
 
     @GetMapping(value = "/allRelease")

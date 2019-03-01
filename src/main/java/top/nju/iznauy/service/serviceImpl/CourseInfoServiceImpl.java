@@ -2,25 +2,21 @@ package top.nju.iznauy.service.serviceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.nju.iznauy.dao.*;
 import top.nju.iznauy.po.course.BroadCastingPO;
 import top.nju.iznauy.po.course.CoursePO;
-import top.nju.iznauy.po.course.CourseReleasePO;
 import top.nju.iznauy.po.courseselection.CourseSelectionPO;
 import top.nju.iznauy.po.user.StudentPO;
 import top.nju.iznauy.po.user.TeacherPO;
 import top.nju.iznauy.service.CourseInfoService;
-import top.nju.iznauy.service.tool.MailService;
 import top.nju.iznauy.vo.course.BroadCastingVO;
 import top.nju.iznauy.vo.course.ClassStudentVO;
 import top.nju.iznauy.vo.course.ClassmateVO;
 import top.nju.iznauy.vo.course.CourseInfoVO;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
