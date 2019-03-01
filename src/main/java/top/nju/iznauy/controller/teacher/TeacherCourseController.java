@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import top.nju.iznauy.controller.tools.TeacherToken;
 import top.nju.iznauy.controller.tools.UserEmail;
+import top.nju.iznauy.service.ScoreService;
 import top.nju.iznauy.service.TeacherCourseService;
 import top.nju.iznauy.vo.teacher.TeacherCourseBasicInfoVO;
 import top.nju.iznauy.vo.teacher.TeacherCourseReleaseBasicInfoVO;
@@ -28,6 +30,8 @@ public class TeacherCourseController {
 
     private TeacherCourseService teacherCourseService;
 
+    private ScoreService scoreService;
+
     @PostMapping(value = "/create")
     @TeacherToken
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -48,6 +52,12 @@ public class TeacherCourseController {
     @TeacherToken
     public List<TeacherCourseReleaseBasicInfoVO> getCourseReleases(@UserEmail String email, @RequestParam int courseId) {
         return teacherCourseService.getAllReleasesByCourseId(email, courseId);
+    }
+
+    @PostMapping(value = "/release/score")
+    @TeacherToken
+    public void uploadReleaseScores(int releaseId, @RequestBody MultipartFile scores, boolean publicized) {
+        scoreService.addReleaseScores(releaseId, scores, publicized);
     }
 
     @GetMapping(value = "/allRelease")
@@ -72,5 +82,10 @@ public class TeacherCourseController {
     @Autowired
     public void setTeacherCourseService(TeacherCourseService teacherCourseService) {
         this.teacherCourseService = teacherCourseService;
+    }
+
+    @Autowired
+    public void setScoreService(ScoreService scoreService) {
+        this.scoreService = scoreService;
     }
 }
