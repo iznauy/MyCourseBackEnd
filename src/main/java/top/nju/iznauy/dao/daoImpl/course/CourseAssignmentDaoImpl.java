@@ -6,6 +6,7 @@ import top.nju.iznauy.dao.CourseAssignmentDao;
 import top.nju.iznauy.po.courseassignment.CourseAssignmentCommitPO;
 import top.nju.iznauy.po.courseassignment.CourseAssignmentPO;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -49,6 +50,16 @@ public class CourseAssignmentDaoImpl implements CourseAssignmentDao {
     @Override
     public void saveAssignmentCommit(CourseAssignmentCommitPO commitPO) {
         assignmentCommitRepository.save(commitPO);
+    }
+
+    @Override
+    public void saveAssignmentCommits(Collection<CourseAssignmentCommitPO> commitPOS) {
+        assignmentCommitRepository.saveAll(commitPOS);
+    }
+
+    @Override
+    public List<CourseAssignmentCommitPO> getCommitsByAssignmentId(int assignmentId) {
+        return assignmentCommitRepository.findAllByAssignmentId(assignmentId);
     }
 
     @Autowired

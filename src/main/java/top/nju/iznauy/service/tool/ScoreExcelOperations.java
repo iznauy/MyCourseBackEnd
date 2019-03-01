@@ -47,13 +47,10 @@ public class ScoreExcelOperations {
         int lastRowIndex = sheet.getLastRowNum();
 
         for (int rowIndex = firstRowIndex; rowIndex < lastRowIndex; rowIndex++) {
-            System.out.println("rIndex: " + rowIndex);
             Row row = sheet.getRow(rowIndex);
             int firstCellIndex = row.getFirstCellNum();
             Cell studentEmailCell = row.getCell(firstCellIndex);
             Cell scoreCell = row.getCell(firstCellIndex + 1);
-            System.out.println("第一个值：" + studentEmailCell.toString());
-            System.out.println("第二个值：" + scoreCell.toString());
             if (studentEmailCell.toString().length() == 0)
                 break;
             resultMap.put(studentEmailCell.toString(), (int) Math.ceil(Double.valueOf(scoreCell.toString())));

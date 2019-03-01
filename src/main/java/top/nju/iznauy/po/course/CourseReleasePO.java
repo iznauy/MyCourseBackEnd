@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -57,9 +58,14 @@ public class CourseReleasePO {
     @Column(nullable = false)
     private boolean hasChecked;
 
-
     @Column(nullable = false)
     private boolean hasApproved;
+
+    @Column(nullable = false)
+    private boolean publicizeScore;
+
+    @Column
+    private String scorePath;
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
@@ -79,6 +85,8 @@ public class CourseReleasePO {
         hasChecked = false;
         hasApproved = false;
         count = 0;
+        this.publicizeScore = false;
+        this.scorePath = null;
     }
 
     public void addCount() {

@@ -72,4 +72,45 @@ public class FileOperations {
         return assignmentPath;
     }
 
+    public static String saveAssignmentScores(MultipartFile file, int assignmentId) {
+        String filename = assignmentId + "." + getExtension(file);
+        String scorePath;
+        try {
+            Path basePath = Paths.get(ResourceUtils.getURL(StaticResourceConfig.ASSIGNMENT_SCORE_BASE_PATH).getPath());
+            Path targetPath = basePath.resolve(filename);
+            Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+            scorePath = basePath.getParent().getParent().getParent().relativize(targetPath).normalize().toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new ServerUnknownException("未知错误");
+        }
+        return scorePath;
+    }
+
+    public static String saveReleaseScores(MultipartFile file, int releaseId) {
+        String filename = releaseId + "." + getExtension(file);
+        String releasePath;
+        try {
+            Path basePath = Paths.get(ResourceUtils.getURL(StaticResourceConfig.RELEASE_SCORE_BASE_PATH).getPath());
+            Path targetPath = basePath.resolve(filename);
+            Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+            releasePath = basePath.getParent().getParent().getParent().relativize(targetPath).normalize().toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new ServerUnknownException("未知错误");
+        }
+        return releasePath;
+    }
+
+    public static String getAbsolutePath(String path) {
+        try {
+            Path basePath = Paths.get(ResourceUtils.getURL(StaticResourceConfig.BASE_PATH).getPath());
+            Path targetPath = basePath.resolve(path);
+            return targetPath.normalize().toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

@@ -3,6 +3,8 @@ package top.nju.iznauy.dao;
 import top.nju.iznauy.po.courseassignment.CourseAssignmentCommitPO;
 import top.nju.iznauy.po.courseassignment.CourseAssignmentPO;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,5 +26,9 @@ public interface CourseAssignmentDao {
     int countAssignmentCommit(int assignmentId);
 
     void saveAssignmentCommit(CourseAssignmentCommitPO commitPO);
+
+    void saveAssignmentCommits(Collection<CourseAssignmentCommitPO> commitPOS);
+
+    List<CourseAssignmentCommitPO> getCommitsByAssignmentId(int assignmentId);
 
 }

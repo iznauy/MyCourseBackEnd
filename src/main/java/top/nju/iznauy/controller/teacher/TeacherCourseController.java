@@ -60,6 +60,11 @@ public class TeacherCourseController {
         scoreService.addReleaseScores(releaseId, scores, publicized);
     }
 
+    @PostMapping(value = "/release/assignment/score")
+    public void uploadAssignmentScores(int assignmentId, @RequestBody MultipartFile scores, boolean publiczed) {
+        scoreService.addAssignmentScores(assignmentId, scores, publiczed);
+    }
+
     @GetMapping(value = "/allRelease")
     @TeacherToken
     public List<TeacherCourseReleaseBasicInfoVO> getAllCourseReleases(@UserEmail String email) {

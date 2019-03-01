@@ -12,4 +12,6 @@ public interface ScoreService {
 
     void addReleaseScores(int releaseId, MultipartFile file, boolean publicized);
 
+    void addAssignmentScores(int assignmentId, MultipartFile file, boolean publicized);
+
 }

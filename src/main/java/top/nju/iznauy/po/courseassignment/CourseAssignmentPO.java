@@ -42,10 +42,17 @@ public class CourseAssignmentPO {
     @CreatedDate
     private Date createDate;
 
+    @Column(nullable = false)
+    private boolean publicizeScore;
+
+    @Column
+    private String scorePath;
+
     public CourseAssignmentPO(int courseReleaseId, String name, String description, Date deadLine) {
         this.courseReleaseId = courseReleaseId;
         this.name = name;
         this.description = description;
         this.deadLine = deadLine;
+        this.publicizeScore = false;
     }
 }
