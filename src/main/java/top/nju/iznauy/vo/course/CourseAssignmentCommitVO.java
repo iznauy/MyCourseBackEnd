@@ -28,12 +28,24 @@ public class CourseAssignmentCommitVO {
 
     private Date upLoadTime;
 
+    private boolean publicized;
+
+    private String classScorePath;
+
     public CourseAssignmentCommitVO(CourseAssignmentCommitPO po) {
         id = po.getId();
         path = po.getPath();
         scored = po.isScored();
         score = po.getScore();
         upLoadTime = po.getUpLoadTime();
+        this.publicized = false;
+        this.classScorePath = null;
+    }
+
+    public CourseAssignmentCommitVO(CourseAssignmentCommitPO po, boolean publicized, String classScorePath) {
+        this(po);
+        this.publicized = publicized;
+        this.classScorePath = classScorePath;
     }
 
 }

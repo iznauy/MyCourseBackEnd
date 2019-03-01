@@ -14,6 +14,7 @@ import top.nju.iznauy.po.courseselection.CourseSelectionPO;
 import top.nju.iznauy.po.courseselection.CourseSelectionRecordPO;
 import top.nju.iznauy.service.StudentCourseService;
 import top.nju.iznauy.vo.student.StudentCourseReleaseBasicInfoVO;
+import top.nju.iznauy.vo.student.StudentScoreVO;
 
 import java.util.List;
 import java.util.Set;
@@ -53,6 +54,21 @@ public class StudentCourseServiceImpl implements StudentCourseService {
         return releaseDao.getReleasesByIds(selections)
                 .stream().map(StudentCourseReleaseBasicInfoVO::new)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public StudentScoreVO getReleaseScore(String email, int releaseId) {
+        CourseSelectionPO selectionPO = selectionDao.getCourseSelectionByCourseReleaseIdAndStudentEmail(releaseId, email);
+        Integer score = selectionPO.getScore();
+
+        if (score == null)  // 如果还没有评分过，后面不用看了
+            return new StudentScoreVO(false, null, false, null);
+
+        CourseReleasePO releasePO = releaseDao.getCourseReleaseById(releaseId);
+        if(releasePO.isPublicizeScore())
+            return new StudentScoreVO(true, score, true, releasePO.getScorePath());
+         else
+            return new StudentScoreVO(true, score, false, null);
     }
 
     @Override

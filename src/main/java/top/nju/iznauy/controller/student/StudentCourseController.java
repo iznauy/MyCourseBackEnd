@@ -8,6 +8,7 @@ import top.nju.iznauy.controller.tools.StudentToken;
 import top.nju.iznauy.controller.tools.UserEmail;
 import top.nju.iznauy.service.StudentCourseService;
 import top.nju.iznauy.vo.student.StudentCourseReleaseBasicInfoVO;
+import top.nju.iznauy.vo.student.StudentScoreVO;
 
 import java.util.List;
 
@@ -29,6 +30,13 @@ public class StudentCourseController {
     @ResponseStatus(HttpStatus.OK)
     public List<StudentCourseReleaseBasicInfoVO> getAvailableCourses(@UserEmail String email) {
         return courseService.getAvailableCourses(email);
+    }
+
+    @StudentToken
+    @GetMapping("/release/score")
+    @ResponseStatus(HttpStatus.OK)
+    public StudentScoreVO getReleaseScore(@UserEmail String email, int releaseId) {
+        return courseService.getReleaseScore(email, releaseId);
     }
 
     @StudentToken

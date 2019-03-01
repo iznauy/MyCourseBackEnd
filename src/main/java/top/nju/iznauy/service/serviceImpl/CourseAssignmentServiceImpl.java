@@ -52,9 +52,14 @@ public class CourseAssignmentServiceImpl implements CourseAssignmentService {
     public CourseAssignmentCommitVO getOwnAssignmentState(String email, int assignmentId) {
         CourseAssignmentCommitPO commitPO = assignmentDao.getCommitByAssignmentIdAndStudentEmail(assignmentId, email);
         if (commitPO == null)
-            return new CourseAssignmentCommitVO(0, null, false, null, null);
-        else
-            return new CourseAssignmentCommitVO(commitPO);
+            return new CourseAssignmentCommitVO(0, null, false, null, null, false, null);
+        else {
+            CourseAssignmentPO assignmentPO = assignmentDao.getByAssignmentId(assignmentId);
+            if (assignmentPO.getScorePath() != null && assignmentPO.isPublicizeScore())
+                return new CourseAssignmentCommitVO(commitPO, true, assignmentPO.getScorePath());
+            else
+                return new CourseAssignmentCommitVO(commitPO);
+        }
     }
 
     @Override
