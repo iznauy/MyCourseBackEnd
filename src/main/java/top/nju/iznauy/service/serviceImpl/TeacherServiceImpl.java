@@ -4,8 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.nju.iznauy.controller.tools.JwtTokenUtils;
 import top.nju.iznauy.dao.TeacherDao;
+import top.nju.iznauy.dao.UserLogDao;
 import top.nju.iznauy.entity.UserType;
 import top.nju.iznauy.exception.*;
+import top.nju.iznauy.po.log.LoginLogPO;
+import top.nju.iznauy.po.log.RegisterLogPO;
 import top.nju.iznauy.po.user.TeacherPO;
 import top.nju.iznauy.po.uservalidation.TeacherMailValidationPO;
 import top.nju.iznauy.service.UserService;
@@ -27,6 +30,8 @@ public class TeacherServiceImpl implements UserService {
 
     private MailService mailService;
 
+    private UserLogDao userLogDao;
+
     @Override
     public TokenVO login(String email, String password) {
         TeacherPO teacherPO = teacherDao.getTeacherByEmail(email);
@@ -36,6 +41,8 @@ public class TeacherServiceImpl implements UserService {
             throw new IncorrectAccountException("密码错误");
         if (!teacherPO.isHasValidated()) // 没有激活过
             throw new NotActivationException();
+
+        userLogDao.addLoginLog(new LoginLogPO(email, UserType.teacher));
 
         String token = JwtTokenUtils.createToken(email, UserType.teacher);
         return new TokenVO(token);
@@ -48,6 +55,8 @@ public class TeacherServiceImpl implements UserService {
             throw new EmailDuplicateException("已注册");
         TeacherPO teacherPO = new TeacherPO(email, password);
         teacherDao.saveTeacher(teacherPO);
+
+        userLogDao.addRegisterLog(new RegisterLogPO(email, UserType.teacher));
     }
 
     @Override

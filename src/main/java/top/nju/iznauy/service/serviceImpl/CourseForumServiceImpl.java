@@ -14,6 +14,8 @@ import top.nju.iznauy.po.course.CourseReleasePO;
 import top.nju.iznauy.po.courseforum.CoursePostPO;
 import top.nju.iznauy.po.courseforum.CourseReplyPO;
 import top.nju.iznauy.po.courseselection.CourseSelectionPO;
+import top.nju.iznauy.po.log.PosterLogPO;
+import top.nju.iznauy.po.log.ReplyLogPO;
 import top.nju.iznauy.po.user.StudentPO;
 import top.nju.iznauy.po.user.TeacherPO;
 import top.nju.iznauy.service.CourseForumService;
@@ -46,6 +48,8 @@ public class CourseForumServiceImpl implements CourseForumService {
     private CourseSelectionDao selectionDao;
 
     private CourseReleaseDao releaseDao;
+
+    private ForumLogDao forumLogDao;
 
     private Map<String, UserInfoEntity> getUserInfoEntitiesForTeachers(Collection<String> teacherEmails) {
         Map<String, UserInfoEntity> resultMap = new HashMap<>();
@@ -100,12 +104,16 @@ public class CourseForumServiceImpl implements CourseForumService {
     public void publishPost(String email, UserType userType, int courseId, String title, String content) {
         CoursePostPO postPO = new CoursePostPO(courseId, title, content, email, userType);
         courseForumDao.savePost(postPO);
+
+        forumLogDao.addPosterLog(new PosterLogPO(postPO.getId()));
     }
 
     @Override
     public void publishReply(String email, UserType userType, int postId, String content) {
         CourseReplyPO replyPO = new CourseReplyPO(content, email, userType, postId);
         courseForumDao.saveReply(replyPO);
+
+        forumLogDao.addReplyLog(new ReplyLogPO(replyPO.getId()));
     }
 
     @Override
@@ -207,6 +215,11 @@ public class CourseForumServiceImpl implements CourseForumService {
     @Autowired
     public void setReleaseDao(CourseReleaseDao releaseDao) {
         this.releaseDao = releaseDao;
+    }
+
+    @Autowired
+    public void setForumLogDao(ForumLogDao forumLogDao) {
+        this.forumLogDao = forumLogDao;
     }
 
     @AllArgsConstructor

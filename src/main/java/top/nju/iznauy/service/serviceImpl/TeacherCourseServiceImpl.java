@@ -3,11 +3,14 @@ package top.nju.iznauy.service.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.nju.iznauy.dao.CourseDao;
+import top.nju.iznauy.dao.CourseLogDao;
 import top.nju.iznauy.dao.CourseReleaseDao;
 import top.nju.iznauy.exception.DuplicationException;
 import top.nju.iznauy.exception.NotExistsException;
 import top.nju.iznauy.po.course.CoursePO;
 import top.nju.iznauy.po.course.CourseReleasePO;
+import top.nju.iznauy.po.log.CourseCreateLogPO;
+import top.nju.iznauy.po.log.CourseReleaseLogPO;
 import top.nju.iznauy.service.TeacherCourseService;
 import top.nju.iznauy.service.tool.DirectoryOperations;
 import top.nju.iznauy.vo.teacher.TeacherCourseBasicInfoVO;
@@ -30,11 +33,14 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 
     private CourseReleaseDao courseReleaseDao;
 
+    private CourseLogDao courseLogDao;
+
     @Override
     public void createCourse(String email, String courseName, String courseDescription) {
         CoursePO coursePO = new CoursePO(courseName, courseDescription, email);
         courseDao.saveCourse(coursePO);
         DirectoryOperations.createCourseFolder(coursePO.getCourseId());
+        courseLogDao.addCreateLog(new CourseCreateLogPO(coursePO.getCourseId(), email));
     }
 
     @Override
@@ -68,6 +74,8 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
             throw new NotExistsException("课程不存在");
         CourseReleasePO releasePO = new CourseReleasePO(coursePO, beginDate, endDate, classOrder, hasQuota, quota);
         courseReleaseDao.saveRelease(releasePO);
+
+        courseLogDao.addReleaseCourseLog(new CourseReleaseLogPO(releasePO.getId(), email));
     }
 
     @Autowired
@@ -78,5 +86,10 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
     @Autowired
     public void setCourseReleaseDao(CourseReleaseDao courseReleaseDao) {
         this.courseReleaseDao = courseReleaseDao;
+    }
+
+    @Autowired
+    public void setCourseLogDao(CourseLogDao courseLogDao) {
+        this.courseLogDao = courseLogDao;
     }
 }
