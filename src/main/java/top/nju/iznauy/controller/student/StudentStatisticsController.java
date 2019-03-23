@@ -9,6 +9,7 @@ import top.nju.iznauy.controller.tools.StudentToken;
 import top.nju.iznauy.controller.tools.UserEmail;
 import top.nju.iznauy.service.StudentStatisticsService;
 import top.nju.iznauy.vo.student.CourseSelectionRecordVO;
+import top.nju.iznauy.vo.student.StudentStatisticsScoreVO;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("/student")
+@RequestMapping("/student/statistics")
 public class StudentStatisticsController {
 
     private StudentStatisticsService studentStatisticsService;
@@ -29,6 +30,12 @@ public class StudentStatisticsController {
     @GetMapping("/selectRecord")
     public List<CourseSelectionRecordVO> getCourseSelectRecords(@UserEmail String email) {
         return studentStatisticsService.getCourseSelectRecords(email);
+    }
+
+    @StudentToken
+    @GetMapping("/scores")
+    public List<StudentStatisticsScoreVO> getCourseScores(@UserEmail String email) {
+        return studentStatisticsService.getCourseScores(email);
     }
 
     @Autowired

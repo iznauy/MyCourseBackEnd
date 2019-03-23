@@ -3,7 +3,6 @@ package top.nju.iznauy.vo.student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import top.nju.iznauy.dao.CourseSelectionRecordDao;
 import top.nju.iznauy.po.courseselection.CourseSelectionRecordPO;
 
 import java.util.Date;

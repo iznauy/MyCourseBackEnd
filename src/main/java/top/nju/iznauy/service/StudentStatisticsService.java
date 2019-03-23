@@ -1,6 +1,7 @@
 package top.nju.iznauy.service;
 
 import top.nju.iznauy.vo.student.CourseSelectionRecordVO;
+import top.nju.iznauy.vo.student.StudentStatisticsScoreVO;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ import java.util.List;
 public interface StudentStatisticsService {
 
     List<CourseSelectionRecordVO> getCourseSelectRecords(String email);
+
+    List<StudentStatisticsScoreVO> getCourseScores(String email);
 }
