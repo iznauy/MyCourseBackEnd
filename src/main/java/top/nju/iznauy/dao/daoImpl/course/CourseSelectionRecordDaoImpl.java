@@ -6,6 +6,7 @@ import top.nju.iznauy.dao.CourseSelectionRecordDao;
 import top.nju.iznauy.po.courseselection.CourseSelectionRecordPO;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created on 22/02/2019.
@@ -26,6 +27,11 @@ public class CourseSelectionRecordDaoImpl implements CourseSelectionRecordDao {
     @Override
     public void saveRecords(Collection<CourseSelectionRecordPO> recordPOS) {
         recordRepository.saveAll(recordPOS);
+    }
+
+    @Override
+    public List<CourseSelectionRecordPO> getRecordsByEmail(String email) {
+        return recordRepository.findAllByStudentEmail(email);
     }
 
     @Autowired

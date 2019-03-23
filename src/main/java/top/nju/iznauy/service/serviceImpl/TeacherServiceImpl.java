@@ -99,4 +99,9 @@ public class TeacherServiceImpl implements UserService {
     public void setMailService(MailService mailService) {
         this.mailService = mailService;
     }
+
+    @Autowired
+    public void setUserLogDao(UserLogDao userLogDao) {
+        this.userLogDao = userLogDao;
+    }
 }
