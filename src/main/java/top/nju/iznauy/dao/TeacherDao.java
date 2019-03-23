@@ -24,4 +24,6 @@ public interface TeacherDao {
 
     List<TeacherPO> getTeachersByEmailCollection(Collection<String> collection);
 
+    int countHasValidatedTeacher();
+
 }

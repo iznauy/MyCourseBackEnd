@@ -31,4 +31,6 @@ public interface CourseReleaseDao {
 
     void saveRelease(CourseReleasePO releasePO);
 
+    int countAvailableRelease();
+
 }

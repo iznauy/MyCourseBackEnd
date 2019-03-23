@@ -26,4 +26,6 @@ public interface StudentDao {
 
     List<StudentPO> getStudents(int limit);
 
+    int countActiveStudents();
+
 }

@@ -45,6 +45,11 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
+    public int countActiveStudents() {
+        return studentRepository.countByHasValidated(true);
+    }
+
+    @Override
     public List<StudentPO> getStudents(int limit) {
         PageRequest pageRequest = PageRequest.of(0, limit);
         return studentRepository.findAll((e0, e1, e2) -> {

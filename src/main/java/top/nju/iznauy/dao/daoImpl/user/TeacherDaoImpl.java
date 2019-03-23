@@ -47,6 +47,11 @@ public class TeacherDaoImpl implements TeacherDao {
         return teacherRepository.findAllByMailIn(collection);
     }
 
+    @Override
+    public int countHasValidatedTeacher() {
+        return teacherRepository.countByHasValidated(true);
+    }
+
     @Autowired
     public void setTeacherRepository(TeacherRepository teacherRepository) {
         this.teacherRepository = teacherRepository;

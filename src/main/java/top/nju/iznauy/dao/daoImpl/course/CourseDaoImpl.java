@@ -30,6 +30,11 @@ public class CourseDaoImpl implements CourseDao {
 
 
     @Override
+    public int countAvailableCourse() {
+        return courseRepository.countByHasApprovedAndHasChecked(true, true);
+    }
+
+    @Override
     public List<CoursePO> getApprovedCoursesByCreatorEmail(String email) {
         return courseRepository.findAllByHasApprovedAndCourseCreatorMail(true, email);
     }

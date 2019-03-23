@@ -80,6 +80,11 @@ public class CourseReleaseDaoImpl implements CourseReleaseDao {
     }
 
     @Override
+    public int countAvailableRelease() {
+        return courseReleaseRepository.countByHasApprovedAndHasChecked(true, true);
+    }
+
+    @Override
     public void saveRelease(CourseReleasePO releasePO) {
         courseReleaseRepository.save(releasePO);
     }

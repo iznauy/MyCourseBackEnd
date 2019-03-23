@@ -17,4 +17,6 @@ public interface StudentRepository extends CrudRepository<StudentPO, String>, Jp
 
     List<StudentPO> findAllByMailIn(Collection<String> studentPOS);
 
+    int countByHasValidated(boolean hasValidated);
+
 }

@@ -18,6 +18,8 @@ public interface CourseDao {
 
     CoursePO getCourseById(int id);
 
+    int countAvailableCourse();
+
     List<CoursePO> getCoursesByCreatorEmail(String email);
 
     List<CoursePO> getApprovedCoursesByCreatorEmail(String email);

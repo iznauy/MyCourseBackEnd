@@ -19,4 +19,6 @@ public interface CourseRepository extends CrudRepository<CoursePO, Integer> {
 
     List<CoursePO> findAllByHasApprovedAndCourseCreatorMail(boolean approved, String email);
 
+    int countByHasApprovedAndHasChecked(boolean t1, boolean t2);
+
 }

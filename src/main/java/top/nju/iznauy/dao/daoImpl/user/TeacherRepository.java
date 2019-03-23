@@ -16,4 +16,6 @@ public interface TeacherRepository extends CrudRepository<TeacherPO, String> {
 
     List<TeacherPO> findAllByMailIn(Collection<String> teacherPOS);
 
+    int countByHasValidated(boolean hasValidated);
+
 }

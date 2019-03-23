@@ -21,5 +21,7 @@ public interface CourseReleaseRepository extends CrudRepository<CourseReleasePO,
 
     List<CourseReleasePO> findAllByHasChecked(boolean hasChecked);
 
+    int countByHasApprovedAndHasChecked(boolean t1, boolean t2);
+
     List<CourseReleasePO> findAllByBeginDateBeforeAndEndDateAfterAndHasApproved(Date date1, Date date2, boolean hasApproved);
 }
